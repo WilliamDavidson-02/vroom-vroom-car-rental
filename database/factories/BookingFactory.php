@@ -20,12 +20,12 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         // prevent owner and renter to have same id
-        $userIds = User::pluck("id")->shuffle()->all();
-        $owner = User::find($userIds[0]);
-        $car = $owner->cars->random();
+        $car = Car::query()->inRandomOrder()->first();
+        $ownerId = $car->user_id;
+        $renterId = User::where("id", "!=", $ownerId)->pluck("id")->random();
 
         // Find a start and end date that does not overlap with other bookings
-        $latestBooking = Booking::where("car_id", $car->owner_id)->orderBy("end_date", "desc")->first();
+        $latestBooking = Booking::where("car_id", $car->user_id)->orderBy("end_date", "desc")->first();
 
         $startDate = new \DateTime(fake()->dateTimeBetween($latestBooking->end_date ?? date("Y-m-d"), "+1 week")->format("Y-m-d"));
         $endDate = new \DateTime(fake()->dateTimeBetween($startDate, "+1 week")->format("Y-m-d"));
@@ -35,8 +35,8 @@ class BookingFactory extends Factory
         $totalPrice = $car->price * ($days + 1);
 
         return [
-            "owner_id" => $userIds[0],
-            "renter_id" => $userIds[1],
+            "owner_id" => $ownerId,
+            "renter_id" => $renterId,
             "car_id" => $car->id,
             "start_date" => $startDate,
             "end_date" => $endDate,

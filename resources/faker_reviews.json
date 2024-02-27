@@ -1,0 +1,122 @@
+[
+    {
+        "description": "I rented this car for a road trip and it performed amazingly well. Comfortable seats and great fuel efficiency.",
+        "rating": 5
+    },
+    {
+        "description": "The car had a lot of space for luggage which was perfect for our family vacation. Smooth ride too!",
+        "rating": 4
+    },
+    {
+        "description": "I was pleasantly surprised by the advanced tech features in this car. Made the drive much more enjoyable.",
+        "rating": 5
+    },
+    {
+        "description": "Handling on this car was top-notch, especially around sharp turns. Felt very safe.",
+        "rating": 5
+    },
+    {
+        "description": "The interior design was sleek and modern. Felt like I was driving a luxury vehicle.",
+        "rating": 5
+    },
+    {
+        "description": "Unfortunately, the air conditioning wasn't working properly during my rental. Made for a sweaty drive.",
+        "rating": 2
+    },
+    {
+        "description": "The gas mileage was disappointing compared to what was advertised. Ended up spending more on fuel.",
+        "rating": 2
+    },
+    {
+        "description": "The touchscreen interface was a bit glitchy and unresponsive at times.",
+        "rating": 3
+    },
+    {
+        "description": "The car had a strange odor inside, possibly from a previous renter.",
+        "rating": 2
+    },
+    {
+        "description": "Overall, a reliable and affordable option for a weekend getaway.",
+        "rating": 4
+    },
+    {
+        "description": "The car had trouble accelerating on highways, felt underpowered.",
+        "rating": 3
+    },
+    {
+        "description": "The rental process was smooth and hassle-free. Great customer service.",
+        "rating": 5
+    },
+    {
+        "description": "The seats were uncomfortable for long drives, could use more cushioning.",
+        "rating": 3
+    },
+    {
+        "description": "I loved the panoramic sunroof, it added a nice touch to the driving experience.",
+        "rating": 5
+    },
+    {
+        "description": "The sound system in the car was fantastic, made for some enjoyable road trip tunes.",
+        "rating": 4
+    },
+    {
+        "description": "Braking was a bit touchy, had to be careful to avoid sudden stops.",
+        "rating": 3
+    },
+    {
+        "description": "The car's exterior design drew a lot of compliments wherever I went.",
+        "rating": 4
+    },
+    {
+        "description": "The headlights were dim, especially at night. Made visibility a bit challenging.",
+        "rating": 3
+    },
+    {
+        "description": "The car's fuel tank was smaller than expected, had to fill up more frequently.",
+        "rating": 3
+    },
+    {
+        "description": "I appreciated the safety features like lane departure warning and blind-spot detection.",
+        "rating": 4
+    },
+    {
+        "description": "The rental agency provided a dirty car, had to spend time cleaning it before use.",
+        "rating": 2
+    },
+    {
+        "description": "The GPS navigation system was outdated, led me to some wrong turns.",
+        "rating": 2
+    },
+    {
+        "description": "The car had great acceleration and power, made merging onto highways effortless.",
+        "rating": 4
+    },
+    {
+        "description": "The suspension was too stiff, felt every bump and pothole on the road.",
+        "rating": 2
+    },
+    {
+        "description": "The car's engine was noisy at high speeds, made for a less peaceful drive.",
+        "rating": 2
+    },
+    {
+        "description": "The leather seats were luxurious and easy to clean.",
+        "rating": 4
+    },
+    {
+        "description": "The car had excellent fuel efficiency, saved a lot on gas money.",
+        "rating": 5
+    },
+    {
+        "description": "The trunk space was smaller than expected, struggled to fit all our luggage.",
+        "rating": 3
+    },
+    {
+        "description": "The car's handling in snowy conditions was impressive, felt very stable.",
+        "rating": 4
+    },
+    {
+        "description": "Overall, a reliable and practical choice for everyday commuting.",
+        "rating": 4
+    }
+]
