@@ -1,6 +1,117 @@
-.container {
-    background: #f00;
-    h1 {
-        font-size: 32px;
+@use "base" as *;
+
+%submit-button {
+    background-color: $light-blue;
+    border: 1px solid $medium-blue;
+    border-radius: $radius;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.3s ease-out;
+    outline-color: $dark-blue;
+    outline-width: 2px;
+}
+
+%submit-button:hover {
+    transition: background-color 0.3s ease-out;
+    background-color: $medium-blue;
+}
+
+.auth-form {
+    @extend %flex-center;
+    height: 100vh;
+    margin: 0 $margin-md;
+
+    form {
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-md;
+
+        button {
+            @extend %button-md;
+            @extend %submit-button;
+        }
+
+        .form-tab-link {
+            font-size: 0.8rem;
+            text-align: center;
+            color: $dark-blue;
+
+            a {
+                text-decoration: underline;
+                cursor: pointer;
+                font-weight: 500;
+                color: $dark-blue;
+            }
+        }
+
+        .auth-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: $gap-md;
+
+            select {
+                grid-column: span 3;
+                background-color: $white;
+            }
+        }
     }
+}
+
+%label-top {
+    transition: all 0.2s ease-in-out;
+    top: -10px;
+    transform: translateY(0);
+    font-size: 0.8rem;
+}
+
+.input-container {
+    position: relative;
+    border: 1px solid $dark-blue;
+    border-radius: $radius;
+    padding: $padding-y-sm $padding-x-sm;
+
+    &:focus-within {
+        outline: 1px solid $dark-blue;
+
+        label {
+            @extend %label-top;
+        }
+    }
+
+    input {
+        border: none;
+        width: 100%;
+        font-size: 1rem;
+        padding-left: $padding-x-sm;
+        padding-top: $padding-x-sm;
+
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 9999px $white inset;
+        }
+
+        &:not(:placeholder-shown) + label {
+            @extend %label-top;
+        }
+    }
+
+    label {
+        transition: all 0.2s ease-in-out;
+        position: absolute;
+        top: 50%;
+        left: $padding-x-sm;
+        transform: translateY(-50%);
+        font-size: 0.875rem;
+        background-color: $white;
+        padding: 0 $padding-x-sm;
+        color: $dark-blue;
+    }
+}
+
+.error {
+    color: $red-decline;
+    text-align: center;
+    font-size: 0.875rem;
 }

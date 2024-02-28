@@ -1,0 +1,56 @@
+$margin-sm: 8px;
+$margin-md: 16px;
+
+$padding-y-sm: 4px;
+$padding-x-sm: 8px;
+$padding-y-md: 8px;
+$padding-x-md: 16px;
+
+$gap-sm: 4px;
+$gap-md: 16px;
+
+$radius: 8px;
+
+$white: #f9f7f6;
+$grey: #82858e;
+$light-blue: #79a2d8;
+$medium-blue: #4e71ba;
+$dark-blue: #142e6b;
+$red-decline: #bb3e3e;
+$green-accept: #4a9f3d;
+
+* {
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: $white;
+}
+
+button {
+    cursor: pointer;
+}
+
+input {
+    outline: none;
+    background: $white;
+    color: $dark-blue;
+}
+
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%button-sm {
+    padding: 2px 8px;
+}
+
+%button-md {
+    padding: 4px 16px;
+}
