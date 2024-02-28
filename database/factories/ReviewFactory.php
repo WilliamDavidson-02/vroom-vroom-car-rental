@@ -17,7 +17,7 @@ class ReviewFactory extends Factory
      */
     public function definition(): array
     {
-        $reviews = json_decode(file_get_contents(__DIR__ . "/../../resources/faker_reviews.json"), true);
+        $reviews = json_decode(file_get_contents(__DIR__ . "/../../resources/lib/faker_reviews.json"), true);
         $review = $reviews[rand(0, count($reviews) - 1)];
         $booking = Booking::query()->inRandomOrder()->first();
 
