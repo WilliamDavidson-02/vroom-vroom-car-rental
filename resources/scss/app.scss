@@ -10,11 +10,11 @@
     transition: 0.3s ease-out;
     outline-color: $dark-blue;
     outline-width: 2px;
-}
 
-%submit-button:hover {
-    transition: background-color 0.3s ease-out;
-    background-color: $medium-blue;
+    &:hover {
+        transition: background-color 0.3s ease-out;
+        background-color: $medium-blue;
+    }
 }
 
 .auth-form {
@@ -55,7 +55,20 @@
             select {
                 grid-column: span 3;
                 background-color: $white;
+                color: $dark-blue;
             }
+        }
+
+        .error {
+            color: $red-decline;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .success {
+            color: $medium-blue;
+            text-align: center;
+            font-size: 0.875rem;
         }
     }
 }
@@ -110,10 +123,51 @@
     }
 }
 
-.error {
-    color: $red-decline;
-    text-align: center;
-    font-size: 0.875rem;
+.avatar-input {
+    border-radius: 50%;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    cursor: pointer;
+
+    &:focus-within,
+    &.drop-zone-active {
+        outline: 3px solid $dark-blue;
+        outline-offset: 2px;
+    }
+}
+
+.avatar {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    overflow: hidden;
+
+    .skeleton {
+        width: 100%;
+        height: 100%;
+        background: $white;
+        filter: brightness(0.9);
+        border-radius: 50%;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    img {
+        border-radius: 50%;
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
 .off-screen-menu {
     background-color: $medium-blue;
