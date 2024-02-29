@@ -169,3 +169,121 @@
         opacity: 0.5;
     }
 }
+.off-screen-menu {
+    background-color: $medium-blue;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    gap: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: 0.5s ease;
+    color: $white;
+    &.active {
+        right: 0;
+    }
+    a {
+        color: $white;
+        text-decoration: none;
+        &:hover {
+            color: $link-hover;
+        }
+    }
+    li {
+        list-style: none;
+    }
+    .user {
+        display: flex;
+        font-size: 2rem;
+        gap: 16px;
+        align-items: center;
+
+        padding-bottom: 32px;
+
+        margin: 16px;
+        justify-content: center;
+        img {
+            border: 2px solid $white;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+        }
+        .rating {
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 1rem;
+        }
+    }
+    .nav-list {
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        margin: 16px;
+        color: $white;
+        i {
+            color: $white;
+            margin-right: 24px;
+        }
+    }
+}
+nav {
+    padding: 1rem;
+    display: flex;
+    background-color: $medium-blue;
+    .logo {
+        height: 50px;
+        img {
+            height: 100%;
+        }
+    }
+}
+.ham-menu {
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    position: relative;
+
+    span {
+        height: 5px;
+        width: 100%;
+        background-color: $light-blue;
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        transition: all 0.5s ease-in-out;
+    }
+    span:nth-child(1) {
+        top: 25%;
+    }
+    span:nth-child(3) {
+        top: 75%;
+    }
+    &.active {
+        span:nth-child(1) {
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        span:nth-child(2) {
+            opacity: 0;
+        }
+        span:nth-child(3) {
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
+    &:hover > span {
+        background-color: $link-hover;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
