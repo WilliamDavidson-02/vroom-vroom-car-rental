@@ -4,8 +4,18 @@
 
 @section('content')
     <main class="auth-form">
-        <form method="post" action="/register">
+        <form method="post" action="/register" enctype="multipart/form-data">
             @csrf
+            <label tabindex="0" class="avatar-input" id="avatar-drop-zone" for="avatar">
+                @include("avatar")
+                <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept="image/png, image/jpeg, image/jpg, image/svg"
+                hidden
+                >
+            </label>
             <div class="input-container">
                 <input min="2" required type="text" id="first_name" name="first_name" autocomplete="name" placeholder=" ">
                 <label for="first_name">First name</label>
@@ -34,7 +44,7 @@
                     </select>
             </div>
             <div class="input-container">
-                <input min="8" required type="password" id="password" name="password" autocomplete="off" placeholder=" ">
+                <input min="8" required type="password" id="password" name="password" autocomplete="new-password" placeholder=" ">
                 <label for="password">Password</label>
             </div>
             <button type="submit">Register</button>
