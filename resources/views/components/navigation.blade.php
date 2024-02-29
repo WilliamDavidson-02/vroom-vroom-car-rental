@@ -1,30 +1,50 @@
 <?php $user = Auth::user(); ?>
-{{-- TODO: implement logic to check if user has any requests with the status pending == null,
-    if they do, display a notification symbol on the "requests" menu item and on the hamburger menu-}}
-{{-- if $user --}}
-@if (true)
+<?php
+$cars = $user->cars;
+$notification = 0;
+foreach ($cars as $car) {
+    if (!empty($car->bookings)) {
+        foreach ($car->bookings as $booking) {
+            if ($booking->accepted == null) {
+                $notification++;
+            }
+        }
+    }
+}
+$rating = 0;
+$total = 0;
+foreach ($cars as $car) {
+    if (!empty($car->reviews)) {
+        foreach ($car->reviews as $review) {
+            $rating += $review->rating;
+            $total++;
+        }
+    }
+}
+
+$rating = $rating / $total;
+?>
+
+@if ($user)
     <div class="off-screen-menu">
         <div class="user">
-            {{-- if $user->avatar == null || $user->avatar == "" --}}
-            @if (true)
-                {{-- {{ url('/images/avatars/default_user.svg') }} --}}
+            @if ($user->avatar == null || $user->avatar == '')   
                 <img src="/images/avatars/default_user.svg" alt="">
             @else
-                {{-- {{ url('/images/avatars/' . $user->avatar . '.png') }} --}}
-                <img src="" alt="">
+                <img src="{{ url('/images/avatars/' . $user->avatar . '.png') }}" alt="">
             @endif
 
             <div class="info">
-                {{-- {{ $user->first_name . ' ' . $user->last_name }} --}}
-                <div class="name"> John Doe</div>
+                <div class="name"> {{ $user->first_name . ' ' . $user->last_name }} </div>
                 <div class="rating">
-                    {{-- TODO: implement logic and display full stars depending on how many they have, placeholders for now --}}
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <div class="total-rating">(x)</div>
+                    @for ($i = 0; $i < 5; $i++)
+                        @if (floor($rating) > $i)
+                            <i class="fa-solid fa-star"></i>
+                        @else
+                            <i class="fa-regular fa-star"></i>
+                        @endif
+                    @endfor
+                    <div class="total-rating">({{ $total }})</div>
                 </div>
             </div>
         </div>
@@ -39,7 +59,13 @@
             </a>
             <a href="">
                 {{-- {{ route('requests') }} --}}
-                <li><i class="fa-solid fa-hand-holding-dollar"></i> Requests</li>
+                <li><i class="fa-solid fa-hand-holding-dollar"></i> requests
+                    @if ($notification > 0)
+                        <div class="notification">{{ $notification }}</div>
+                    @endif
+
+                </li>
+
 
             </a>
             <a href="">
@@ -55,8 +81,6 @@
                 <li><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</li>
             </a>
         </ul>
-
-
     </div>
 @else
     <div class="off-screen-menu">
@@ -79,5 +103,8 @@
         <span></span>
         <span></span>
         <span></span>
+        @if ($notification > 0)
+            <div class="notification">{{ $notification }}</div>
+        @endif
     </div>
 </nav>

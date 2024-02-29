@@ -32,6 +32,10 @@ class Car extends Model
     {
         return $this->hasMany(Booking::class);
     }
+    public function Reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 
     public function user(): BelongsTo
     {
