@@ -141,17 +141,12 @@
             color: $link-hover;
         }
     }
-    li {
-        list-style: none;
-    }
     .user {
         display: flex;
         font-size: 2rem;
         gap: 16px;
         align-items: center;
-
         padding-bottom: 32px;
-
         margin: 16px;
         justify-content: center;
         img {
@@ -173,9 +168,20 @@
         gap: 32px;
         margin: 16px;
         color: $white;
+        li {
+            list-style: none;
+            display: flex;
+            gap: 24px;
+        }
         i {
             color: $white;
-            margin-right: 24px;
+            width: 30px;
+        }
+        .notification {
+            border-radius: 50%;
+            background: $red-decline;
+            font-size: 1rem;
+            padding: 6px;
         }
     }
 }
@@ -188,6 +194,17 @@ nav {
         img {
             height: 100%;
         }
+    }
+    .notification {
+        z-index: 5;
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        background: $red-decline;
+        border-radius: 50%;
+        padding: 6px;
+        font-size: 0.65rem;
+        color: $white;
     }
 }
 .ham-menu {
