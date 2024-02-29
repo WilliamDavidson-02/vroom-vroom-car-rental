@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->integer('age');
             $table->string('country');
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default("avatar.svg");
             $table->rememberToken();
             $table->timestamps();
         });
