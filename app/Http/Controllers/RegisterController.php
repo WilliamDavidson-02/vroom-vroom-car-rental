@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'first_name' => $req->first_name,
-            'last_name' => $req->first_name,
+            'last_name' => $req->last_name,
             'email' => $req->email,
             'phone_number' => $req->phone_number,
             'age' => intval($req->age),

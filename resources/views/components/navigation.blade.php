@@ -1,6 +1,4 @@
 <?php $user = Auth::user(); ?>
-{{-- TODO: implement logic to check if user has any requests with the status pending == null, 
-    if they do, display a notification symbol on the "requests" menu item and on the hamburger menu --}}
 <?php
 $cars = $user->cars;
 $notification = 0;
@@ -27,12 +25,11 @@ foreach ($cars as $car) {
 $rating = $rating / $total;
 ?>
 
-
 @if ($user)
     <div class="off-screen-menu">
         <div class="user">
-            @if ($user->avatar == null || $user->avatar == '')
-                <img src="/images/avatars/default_user.png" alt="">
+            @if ($user->avatar == null || $user->avatar == '')   
+                <img src="/images/avatars/default_user.svg" alt="">
             @else
                 <img src="{{ url('/images/avatars/' . $user->avatar . '.png') }}" alt="">
             @endif
@@ -40,7 +37,6 @@ $rating = $rating / $total;
             <div class="info">
                 <div class="name"> {{ $user->first_name . ' ' . $user->last_name }} </div>
                 <div class="rating">
-                    {{-- TODO: implement logic and display full stars depending on how many they have, placeholders for now --}}
                     @for ($i = 0; $i < 5; $i++)
                         @if (floor($rating) > $i)
                             <i class="fa-solid fa-star"></i>
@@ -85,8 +81,6 @@ $rating = $rating / $total;
                 <li><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</li>
             </a>
         </ul>
-
-
     </div>
 @else
     <div class="off-screen-menu">

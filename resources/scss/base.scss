@@ -25,11 +25,11 @@ $link-hover: #244fac;
     box-sizing: border-box;
 }
 
-html,
 body {
     margin: 0;
     padding: 0;
     background: $white;
+    padding: 0 $padding-x-md;
 }
 
 button {

@@ -7,11 +7,11 @@
         <form method="post" action="/register">
             @csrf
             <div class="input-container">
-                <input min="2" required type="text" id="first_name" name="first_name" autocomplete="first_name" placeholder=" ">
+                <input min="2" required type="text" id="first_name" name="first_name" autocomplete="name" placeholder=" ">
                 <label for="first_name">First name</label>
             </div>
             <div class="input-container">
-                <input min="2" required type="text" id="last_name" name="last_name" autocomplete="last_name" placeholder=" ">
+                <input min="2" required type="text" id="last_name" name="last_name" autocomplete="name" placeholder=" ">
                 <label for="last_name">Last name</label>
             </div>
             <div class="input-container">
@@ -19,7 +19,7 @@
                 <label for="email">Email</label>
             </div>
             <div class="input-container">
-                <input required type="tel" id="phone_number" name="phone_number" autocomplete="phone_number" placeholder=" ">
+                <input required type="tel" id="phone_number" name="phone_number" autocomplete="cc-number" placeholder=" ">
                 <label for="phone_number">Phone number</label>
             </div>
             <div class="auth-grid">
@@ -27,7 +27,7 @@
                     <input min="18" max="100" required type="number" id="age" name="age" autocomplete="age" placeholder=" ">
                     <label for="age">Age</label>
                 </div>
-                    <select class="input-container" name="country" id="country">
+                    <select autocomplete="country" class="input-container" name="country" id="country">
                         @foreach ($countries as $country)
                             <option value="{{$country->code}}">{{$country->name}}</option>
                         @endforeach
