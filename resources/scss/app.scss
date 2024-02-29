@@ -1,15 +1,3 @@
-
-:root {
-    --white: #f9f7f6;
-    --grey: #82858e;
-    --light-blue: #79a2d8;
-    --medium-blue: #4e71ba;
-    --dark-blue: #142e6b;
-    --red-decline: #bb3e3e;
-    --green-accept: #4a9f3d;
-    --link-hover: #244fac;
-}
-
 @use "base" as *;
 
 %submit-button {
@@ -128,13 +116,13 @@
     font-size: 0.875rem;
 }
 .off-screen-menu {
-    background-color: (var(--dark-blue));
+    background-color: $medium-blue;
     height: 100vh;
     width: 100%;
-    max-width: 95%;
+    max-width: 100%;
     position: fixed;
     top: 0;
-    right: -95%;
+    right: -100%;
     gap: 48px;
     display: flex;
     flex-direction: column;
@@ -142,15 +130,15 @@
     align-items: center;
     font-size: 1.5rem;
     transition: 0.5s ease;
-    color: var(--white);
+    color: $white;
     &.active {
         right: 0;
     }
     a {
-        color: var(--light-blue);
+        color: $white;
         text-decoration: none;
         &:hover {
-            color: var(--link-hover);
+            color: $link-hover;
         }
     }
     li {
@@ -161,13 +149,13 @@
         font-size: 2rem;
         gap: 16px;
         align-items: center;
-        border-bottom: var(--light-blue) solid 1px;
+
         padding-bottom: 32px;
-        width: 60%;
+
         margin: 16px;
         justify-content: center;
         img {
-            border: 2px solid var(--medium-blue);
+            border: 2px solid $white;
             width: 75px;
             height: 75px;
             border-radius: 50%;
@@ -179,19 +167,28 @@
         }
     }
     .nav-list {
+        padding: 0px;
         display: flex;
         flex-direction: column;
         gap: 32px;
+        margin: 16px;
+        color: $white;
         i {
-            color: var(--white);
-            margin-right: 16px;
+            color: $white;
+            margin-right: 24px;
         }
     }
 }
 nav {
     padding: 1rem;
     display: flex;
-    background-color: var(--dark-blue);
+    background-color: $medium-blue;
+    .logo {
+        height: 50px;
+        img {
+            height: 100%;
+        }
+    }
 }
 .ham-menu {
     height: 50px;
@@ -202,7 +199,7 @@ nav {
     span {
         height: 5px;
         width: 100%;
-        background-color: var(--light-blue);
+        background-color: $light-blue;
         border-radius: 25px;
         position: absolute;
         left: 50%;
@@ -230,7 +227,7 @@ nav {
         }
     }
     &:hover > span {
-        background-color: var(--link-hover);
+        background-color: $link-hover;
     }
     &:hover {
         cursor: pointer;

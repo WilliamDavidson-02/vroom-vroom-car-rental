@@ -1,4 +1,6 @@
 <?php $user = Auth::user(); ?>
+{{-- TODO: implement logic to check if user has any requests with the status pending == null, 
+    if they do, display a notification symbol on the "requests" menu item and on the hamburger menu-}}
 {{-- if $user --}}
 @if (true)
     <div class="off-screen-menu">
@@ -38,6 +40,7 @@
             <a href="">
                 {{-- {{ route('requests') }} --}}
                 <li><i class="fa-solid fa-hand-holding-dollar"></i> Requests</li>
+
             </a>
             <a href="">
                 {{-- {{ route('profile') }} --}}
@@ -70,8 +73,9 @@
     </div>
 @endif
 <nav>
-    <div class="ham-menu">
+    <div class="logo"><img src="/images/runnerlogo1.png" alt=""></div>
 
+    <div class="ham-menu">
         <span></span>
         <span></span>
         <span></span>
