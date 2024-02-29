@@ -17,5 +17,5 @@
 
 <div id="avatar-img" class="avatar">
     <div class="skeleton"></div>
-    <img style="display: none" src="images/avatars/{{$user->avatar}}" alt="">
+    <img style="display: none" src="images/avatars/{{$user->avatar ?? "default_user.svg"}}" alt="">
 </div>

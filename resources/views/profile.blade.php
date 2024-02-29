@@ -45,7 +45,7 @@
                 </select>
             </div>
             <div class="input-container">
-                <input min="8" required type="password" id="password" name="password" autocomplete="off" placeholder=" ">
+                <input min="8" type="password" id="password" name="password" autocomplete="new-password" placeholder=" ">
                 <label for="password">Password</label>
             </div>
             <button type="submit">Save</button>

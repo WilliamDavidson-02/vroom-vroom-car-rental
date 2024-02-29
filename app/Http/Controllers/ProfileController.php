@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
@@ -30,7 +31,7 @@ class ProfileController extends Controller
             'phone_number' => ["required"],
             'age' => ['required', 'integer', 'min:18', 'max:100'],
             'country' => ['required', 'string'],
-            'password' => ["required", "string", "min:8"],
+            'password' => ["nullable", "string", "min:8"],
         ]);
 
         // Update avatar image in users table and public folder
@@ -59,6 +60,13 @@ class ProfileController extends Controller
 
         // Update remaining data for user
         $data = request()->only(["first_name", "last_name", "email", "phone_number", "age", "country", "password"]);
+
+        // Check if the user has updated there password
+        if ($req->filled("password")) {
+            $data['password'] = Hash::make($req->password);
+        } else {
+            unset($data['password']);
+        }
 
         $user->update($data);
 

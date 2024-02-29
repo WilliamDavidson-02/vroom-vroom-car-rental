@@ -18,7 +18,10 @@ class RegisterController extends Controller
 
     public function createAccount(Request $req)
     {
+        $maxFileSize = 1024 * 5; // 5MB
+
         $req->validate([
+            "avatar" => ["max:$maxFileSize", "mimes:png,jpg,jpeg,svg"],
             'first_name' => ["required", "string", "min:2"],
             'last_name' => ["required", "string", "min:2"],
             'email' => ["required", "string", "email", "unique:users,email"],
@@ -29,14 +32,31 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create([
-            'first_name' => $req->first_name,
-            'last_name' => $req->last_name,
-            'email' => $req->email,
+            'first_name' => htmlspecialchars(trim(ucfirst($req->first_name))),
+            'last_name' => htmlspecialchars(trim(ucfirst($req->last_name))),
+            'email' => htmlspecialchars(trim(($req->email))),
             'phone_number' => $req->phone_number,
             'age' => intval($req->age),
             'country' => $req->country,
             'password' => Hash::make($req->password),
         ]);
+
+        if ($req->hasFile("avatar")) {
+            $avatar = $req->file("avatar");
+            $filename = $avatar->hashName();
+
+            $avatarPath = __DIR__ . "/../../../public/images/avatars";
+
+            try {
+                // Upload avatar
+                $avatar->move($avatarPath, $filename);
+
+                // Save new file name
+                $user->avatar = $filename;
+                $user->save();
+            } catch (\Exception $e) {
+            }
+        }
 
         Auth::login($user);
 
