@@ -45,7 +45,7 @@ class ProfileController extends Controller
                 $avatar->move($avatarPath, $filename);
 
                 // Delete old avatar
-                if ($user->avatar !== "avatar.svg" && file_exists($avatarPath . "/" . $user->avatar)) {
+                if ($user->avatar !== "default_user.svg" && file_exists($avatarPath . "/" . $user->avatar)) {
                     unlink($avatarPath . "/" . $user->avatar);
                 }
 

@@ -1,6 +1,6 @@
 let dropZone;
 
-export const initDropZone = (element) => {
+const initDropZone = (element) => {
     if (!element) return;
 
     dropZone = element;
@@ -64,3 +64,5 @@ const onUpload = (ev) => {
 
     createPlaceholderAvatar(file);
 };
+
+export default initDropZone;

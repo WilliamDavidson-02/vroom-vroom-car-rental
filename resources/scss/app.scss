@@ -20,7 +20,9 @@
 .auth-form {
     @extend %flex-center;
     height: 100vh;
-    margin: 0 $margin-md;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
 
     form {
         max-width: 500px;

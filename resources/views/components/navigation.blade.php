@@ -1,5 +1,5 @@
 <?php $user = Auth::user(); ?>
-{{-- TODO: implement logic to check if user has any requests with the status pending == null, 
+{{-- TODO: implement logic to check if user has any requests with the status pending == null,
     if they do, display a notification symbol on the "requests" menu item and on the hamburger menu-}}
 {{-- if $user --}}
 @if (true)
@@ -7,8 +7,8 @@
         <div class="user">
             {{-- if $user->avatar == null || $user->avatar == "" --}}
             @if (true)
-                {{-- {{ url('/images/avatars/default_user.png') }} --}}
-                <img src="/images/avatars/default_user.png" alt="">
+                {{-- {{ url('/images/avatars/default_user.svg') }} --}}
+                <img src="/images/avatars/default_user.svg" alt="">
             @else
                 {{-- {{ url('/images/avatars/' . $user->avatar . '.png') }} --}}
                 <img src="" alt="">
