@@ -49,18 +49,6 @@
             }
         }
 
-        .auth-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: $gap-md;
-
-            select {
-                grid-column: span 3;
-                background-color: $white;
-                color: $dark-blue;
-            }
-        }
-
         .error {
             color: $red-decline;
             text-align: center;
@@ -96,7 +84,8 @@
         }
     }
 
-    input {
+    input,
+    select {
         border: none;
         width: 100%;
         font-size: 1rem;

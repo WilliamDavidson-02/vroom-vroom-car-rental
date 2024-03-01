@@ -35,7 +35,8 @@ button {
     cursor: pointer;
 }
 
-input {
+input,
+select {
     outline: none;
     background: $white;
     color: $dark-blue;

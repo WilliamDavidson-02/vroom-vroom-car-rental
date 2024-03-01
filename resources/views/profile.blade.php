@@ -30,19 +30,20 @@
                 <label for="email">Email</label>
             </div>
             <div class="input-container">
-                <input value="{{$user->phone_number}}" required type="tel" id="phone_number" name="phone_number" autocomplete="cc-number" placeholder=" ">
+                <input value="{{$user->phone_number}}" required type="tel" id="phone_number" name="phone_number" autocomplete="tel-local" placeholder=" ">
                 <label for="phone_number">Phone number</label>
             </div>
-            <div class="auth-grid">
-                <div class="input-container">
-                    <input value="{{$user->age}}" min="18" max="100" required type="number" id="age" name="age" autocomplete="age" placeholder=" ">
-                    <label for="age">Age</label>
-                </div>
-                <select autocomplete="country" class="input-container" name="country" id="country">
+            <div class="input-container">
+                <input max="{{date("Y-m-d", strtotime("-18 years"))}}" value="{{$user->date_of_birth}}" required type="date" id="date_of_birth" name="date_of_birth" autocomplete="bday" placeholder=" ">
+                <label for="date_of_birth">Date of birth</label>
+            </div>
+            <div class="input-container">
+                <select autocomplete="country" name="country" id="country">
                     @foreach ($countries as $country)
-                        <option {{$user->country === $country->code ? "selected" : ""}} value="{{$country->code}}">{{$country->name}}</option>
+                    <option {{$country->code === $user->country ? "selected" : ""}}  value="{{$country->code}}">{{$country->name}}</option>
                     @endforeach
                 </select>
+                <label for="country">Country</label>
             </div>
             <div class="input-container">
                 <input min="8" type="password" id="password" name="password" autocomplete="new-password" placeholder=" ">

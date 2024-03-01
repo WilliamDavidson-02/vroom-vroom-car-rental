@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,13 +21,17 @@ class RegisterController extends Controller
     {
         $maxFileSize = 1024 * 5; // 5MB
 
+        // Get the current date - 18 years
+        $dt = new Carbon();
+        $before = $dt->subYears(18)->format('Y-m-d');
+
         $req->validate([
             "avatar" => ["max:$maxFileSize", "mimes:png,jpg,jpeg,svg"],
             'first_name' => ["required", "string", "min:2"],
             'last_name' => ["required", "string", "min:2"],
             'email' => ["required", "string", "email", "unique:users,email"],
             'phone_number' => ["required"],
-            'age' => ['required', 'integer', 'min:18', 'max:100'],
+            'date_of_birth' => ["required", "date", "before:$before"],
             'country' => ['required', 'string'],
             'password' => ["required", "string", "min:8"],
         ]);
@@ -36,7 +41,7 @@ class RegisterController extends Controller
             'last_name' => htmlspecialchars(trim(ucfirst($req->last_name))),
             'email' => htmlspecialchars(trim(($req->email))),
             'phone_number' => $req->phone_number,
-            'age' => intval($req->age),
+            'date_of_birth' => $req->date_of_birth,
             'country' => $req->country,
             'password' => Hash::make($req->password),
         ]);

@@ -29,19 +29,20 @@
                 <label for="email">Email</label>
             </div>
             <div class="input-container">
-                <input required type="tel" id="phone_number" name="phone_number" autocomplete="cc-number" placeholder=" ">
+                <input required type="tel" id="phone_number" name="phone_number" autocomplete="tel-local" placeholder=" ">
                 <label for="phone_number">Phone number</label>
             </div>
-            <div class="auth-grid">
-                <div class="input-container">
-                    <input min="18" max="100" required type="number" id="age" name="age" autocomplete="age" placeholder=" ">
-                    <label for="age">Age</label>
-                </div>
-                    <select autocomplete="country" class="input-container" name="country" id="country">
-                        @foreach ($countries as $country)
-                            <option value="{{$country->code}}">{{$country->name}}</option>
-                        @endforeach
-                    </select>
+            <div class="input-container">
+                <input max="{{date("Y-m-d", strtotime("-18 years"))}}" required type="date" id="date_of_birth" name="date_of_birth" autocomplete="bday" placeholder=" ">
+                <label for="date_of_birth">Date of birth</label>
+            </div>
+            <div class="input-container">
+                <select autocomplete="country" name="country" id="country">
+                    @foreach ($countries as $country)
+                    <option value="{{$country->code}}">{{$country->name}}</option>
+                    @endforeach
+                </select>
+                <label for="country">Country</label>
             </div>
             <div class="input-container">
                 <input min="8" required type="password" id="password" name="password" autocomplete="new-password" placeholder=" ">
