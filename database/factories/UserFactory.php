@@ -28,14 +28,16 @@ class UserFactory extends Factory
 
         $email = strtolower("$firstName.$lastName@" . fake()->safeEmailDomain());
 
+        $dob = date("Y-m-d", strtotime(fake()->dateTimeBetween("-80 years", "-18 years")->format("Y-m-d")));
+
         return [
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
             'password' => static::$password ??= Hash::make('password123'),
             'phone_number' => fake()->phoneNumber(),
-            'age' => fake()->numberBetween(18, 100),
-            'country' => 'sweden',
+            'date_of_birth' => $dob,
+            'country' => 'SE',
             'remember_token' => Str::random(10),
         ];
     }

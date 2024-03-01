@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,13 +24,17 @@ class ProfileController extends Controller
 
         $user = User::find(Auth::id());
 
+        // Get the current date - 18 years
+        $dt = new Carbon();
+        $before = $dt->subYears(18)->format('Y-m-d');
+
         $req->validate([
             "avatar" => ["max:$maxFileSize", "mimes:png,jpg,jpeg,svg"],
             'first_name' => ["required", "string", "min:2"],
             'last_name' => ["required", "string", "min:2"],
             'email' => ["required", "string", "email", Rule::unique('users')->ignore($user->id)],
             'phone_number' => ["required"],
-            'age' => ['required', 'integer', 'min:18', 'max:100'],
+            'date_of_birth' => ["required", "date", "before:$before"],
             'country' => ['required', 'string'],
             'password' => ["nullable", "string", "min:8"],
         ]);
@@ -59,7 +64,7 @@ class ProfileController extends Controller
         }
 
         // Update remaining data for user
-        $data = request()->only(["first_name", "last_name", "email", "phone_number", "age", "country", "password"]);
+        $data = request()->only(["first_name", "last_name", "email", "phone_number", "date_of_birth", "country", "password"]);
 
         // Check if the user has updated there password
         if ($req->filled("password")) {
