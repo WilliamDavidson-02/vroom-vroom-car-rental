@@ -23,9 +23,11 @@ Route::get('/', function () {
 
 Route::get("login", [LoginController::class, "index"])->middleware("guest")->name('login');
 Route::post("login", [LoginController::class, "login"])->middleware("guest");
+
 Route::get("register", [RegisterController::class, "index"])->middleware("guest")->name('register');
 Route::post("register", [RegisterController::class, "createAccount"])->middleware("guest");
-Route::get("/logout", LogoutController::class)->middleware("auth")->name('logout');
 
-Route::get("/profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');;
-Route::patch("/profile", [ProfileController::class, "update"])->middleware("auth");
+Route::get("logout", LogoutController::class)->middleware("auth")->name('logout');
+
+Route::get("profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');;
+Route::patch("profile", [ProfileController::class, "update"])->middleware("auth");
