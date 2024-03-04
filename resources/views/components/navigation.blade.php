@@ -23,7 +23,8 @@ if ($user) {
             }
         }
     }
-    $rating = $rating / $total;
+
+    $rating = $total > 0 ? $rating / $total : 0;
 }
 ?>
 
