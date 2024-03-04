@@ -1,6 +1,5 @@
 <?php $user = Auth::user(); ?>
-{{-- TODO: implement logic to check if user has any requests with the status pending == null, 
-    if they do, display a notification symbol on the "requests" menu item and on the hamburger menu --}}
+{{-- TODO: complete the missing links --}}
 <?php
 if ($user) {
     $cars = $user ? $user->cars : null;
@@ -28,10 +27,7 @@ if ($user) {
 }
 ?>
 
-
 @if ($user)
-
-
     <div class="off-screen-menu">
         <div class="user">
             @if ($user->avatar == null || $user->avatar == '')
@@ -42,7 +38,6 @@ if ($user) {
             <div class="info">
                 <div class="name"> {{ $user->first_name . ' ' . $user->last_name }} </div>
                 <div class="rating">
-                    {{-- TODO: implement logic and display full stars depending on how many they have, placeholders for now --}}
                     @for ($i = 0; $i < 5; $i++)
                         @if (floor($rating) > $i)
                             <i class="fa-solid fa-star"></i>
