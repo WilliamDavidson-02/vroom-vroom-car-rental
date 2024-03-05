@@ -5,7 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RentalCarsController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,11 @@ Route::get("logout", LogoutController::class)->middleware("auth")->name('logout'
 Route::get("profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');;
 Route::patch("profile", [ProfileController::class, "update"])->middleware("auth");
 
+
+
+Route::get('/rentalCars', [RentalCarsController::class, 'index'])->name('rentalCars');
+Route::post("/rentalCars", [RentalCarsController::class, "filterCars"]);
+
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals']);
     Route::get("/my-rentals/add", [DashboardRentalsController::class, 'addNewRental']);
@@ -41,3 +48,4 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get("/my-rentals/{car}", [DashboardRentalsController::class, 'myRental']);
     Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
 })->middlewareGroup("dashboard", ["auth"]);
+
