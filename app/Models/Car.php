@@ -41,25 +41,4 @@ class Car extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-
-    public function availableForBooking($startDate, $endDate, $country = null)
-    {
-        $query = $this->bookings()->where(function ($query) use ($startDate, $endDate) {
-            $query->where('start_date', '>', $endDate)
-                ->orWhere('end_date', '<', $startDate)
-                ->orWhere(function ($query) use ($startDate, $endDate) {
-                    $query->where('start_date', '>=', $startDate)
-                        ->where('start_date', '<=', $endDate);
-                });
-        });
-
-        // if ($country) {
-        //     $query->whereHas('owner', function ($query) use ($country) {
-        //         $query->where('country', $country);
-        //     });
-        // }
-
-        return $query->get();
-    }
 }

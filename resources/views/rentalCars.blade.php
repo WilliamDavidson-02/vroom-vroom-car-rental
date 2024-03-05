@@ -22,14 +22,15 @@ use App\Models\User;
                 <input min="2" required type="date" id="end_date" name="end_date" placeholder="" required>
                 <label for="end_date">End Date</label>
             </div>
-            <div class="input-container">
-                <select autocomplete="country" name="country" id="country">
+            {{-- TODO: fix country filtration 
+                <div class="input-container">
+                <select name="country" id="country">
                     @foreach ($countries as $country)
                         <option value="{{ $country->code }}">{{ $country->name }}</option>
                     @endforeach
                 </select>
                 <label for="country">Country</label>
-            </div>
+            </div> --}}
             <button type="submit">Filter</button>
             @include('error')
         </form>
