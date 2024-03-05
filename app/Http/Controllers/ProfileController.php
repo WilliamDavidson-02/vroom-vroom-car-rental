@@ -64,7 +64,7 @@ class ProfileController extends Controller
         }
 
         // Update remaining data for user
-        $data = request()->only(["first_name", "last_name", "email", "phone_number", "date_of_birth", "country", "password"]);
+        $data = $req->only(["first_name", "last_name", "email", "phone_number", "date_of_birth", "country", "password"]);
 
         // Check if the user has updated there password
         if ($req->filled("password")) {

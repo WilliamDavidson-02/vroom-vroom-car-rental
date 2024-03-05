@@ -128,18 +128,24 @@
     }
 }
 
+.skeleton {
+    width: 100%;
+    background: $white;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+}
+
 .avatar {
     aspect-ratio: 1 / 1;
     height: 100%;
     overflow: hidden;
+    position: relative;
 
     .skeleton {
-        width: 100%;
-        height: 100%;
-        background: $white;
-        filter: brightness(0.9);
+        aspect-ratio: 1 / 1;
         border-radius: 50%;
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
     img {
@@ -154,10 +160,10 @@
 @keyframes pulse {
     0%,
     100% {
-        opacity: 1;
+        filter: brightness(0.8);
     }
     50% {
-        opacity: 0.5;
+        filter: brightness(0.7);
     }
 }
 .off-screen-menu {
@@ -296,6 +302,7 @@ nav {
         cursor: pointer;
     }
 }
+
 .filter-cars {
     @extend %flex-center;
     margin: 0 auto;
@@ -412,4 +419,150 @@ nav {
 .total-cars {
     padding: $padding-x-md;
     color: $dark-blue;
+  }
+
+%page-base {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: $padding-y-md;
+}
+
+.dashboard-my-rentals {
+    @extend %page-base;
+
+    & > a {
+        @extend %submit-button;
+        display: block;
+        text-align: center;
+        padding: $padding-y-md $padding-x-md;
+        font-size: 1.3rem;
+        margin-bottom: $gap-md;
+    }
+}
+
+.car-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(calc((1440px / 4) - 48px), 1fr)
+    );
+    gap: $gap-md;
+
+    .car-card {
+        .image-container {
+            aspect-ratio: 16/9;
+            position: relative;
+
+            .skeleton {
+                width: 100%;
+                flex-grow: 1;
+                border-radius: $radius;
+            }
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+                border-radius: $radius;
+                margin-bottom: $gap-md;
+            }
+        }
+
+        div {
+            &:first-child {
+                font-weight: 500;
+                margin-bottom: $gap-sm;
+            }
+
+            .vehicle-data {
+                display: flex;
+                flex-wrap: wrap;
+                gap: $padding-x-md;
+                font-size: 0.8rem;
+
+                span {
+                    text-transform: capitalize;
+                    display: flex;
+                    align-items: center;
+                    gap: 2px;
+                }
+
+                .icon {
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+        }
+    }
+}
+
+.my-rental {
+    @extend %page-base;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-md;
+
+        .car-image-dropzone {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: $radius;
+            cursor: pointer;
+
+            &:focus-within,
+            &.drop-zone-active {
+                outline: 3px solid $dark-blue;
+                outline-offset: 2px;
+            }
+
+            .image-container {
+                height: 100%;
+                aspect-ratio: 16/9;
+                position: relative;
+
+                .skeleton {
+                    width: 100%;
+                    flex-grow: 1;
+                    border-radius: $radius;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+
+        .select-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: $gap-md;
+        }
+
+        button {
+            @extend %submit-button;
+            padding: $padding-y-md $padding-x-md;
+            width: 100%;
+        }
+
+        .error {
+            color: $red-decline;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .success {
+            color: $medium-blue;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+    }
 }

@@ -7,7 +7,7 @@
         <form method="post" action="/register" enctype="multipart/form-data">
             @csrf
             <label tabindex="0" class="avatar-input" id="avatar-drop-zone" for="avatar">
-                @include("avatar")
+                @include("components.avatar")
                 <input
                 type="file"
                 id="avatar"
@@ -49,7 +49,7 @@
                 <label for="password">Password</label>
             </div>
             <button type="submit">Register</button>
-            @include("error")
+            @include("components.error")
             <div class="form-tab-link">
                 <span>Alredy have an account? <a href="/login">Login</a></span>
             </div>

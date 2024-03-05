@@ -1,0 +1,18 @@
+{
+    "types": [
+        "hatchback",
+        "sedan",
+        "small",
+        "convertible",
+        "SUV",
+        "MPV",
+        "coupe",
+        "station wagon"
+    ],
+    "fuels": ["gasoline", "diesel", "natural-gas"],
+    "gear_boxs": [
+        { "type": "Automatic", "value": 1 },
+        { "type": "Manual", "value": 0 }
+    ],
+    "drives": ["awd", "rwd", "fwd"]
+}
