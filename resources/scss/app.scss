@@ -504,6 +504,18 @@ nav {
     padding-top: 16px;
     padding-bottom: 16px;
 
+    .top-container {
+        display: flex;
+        justify-content: space-between;
+        gap: $gap-md;
+        padding: 0 $padding-x-md;
+        font-size: 1.5rem;
+
+        .remove {
+            color: $red-decline;
+        }
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -563,6 +575,85 @@ nav {
             color: $medium-blue;
             text-align: center;
             font-size: 0.875rem;
+        }
+    }
+
+    .no-reviews {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: $medium-blue;
+        margin: 64px 0;
+    }
+}
+
+.reviews-container {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-md;
+    color: $dark-blue;
+
+    h1 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .total {
+        text-align: center;
+    }
+
+    .review-card {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-sm;
+
+        .user {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: $gap-md;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: $gap-sm;
+
+            .between {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+        }
+    }
+
+    .see-more {
+        text-decoration: underline;
+        text-align: center;
+        display: block;
+        margin-top: $gap-md;
+    }
+}
+
+.star-chart {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    row-gap: $gap-md;
+    column-gap: $gap-sm;
+    padding: 0 $padding-x-md;
+
+    .index {
+        width: 100%;
+        text-align: end;
+    }
+
+    .fill {
+        background: $light-blue;
+
+        div {
+            background: $dark-blue;
+            width: 50%;
+            height: 100%;
         }
     }
 }

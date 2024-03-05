@@ -33,7 +33,7 @@ class Car extends Model
     {
         return $this->hasMany(Booking::class);
     }
-    public function Reviews(): HasMany
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }

@@ -8,6 +8,14 @@
 
 @section("content")
 <main class="my-rental">
+    <div class="top-container">
+        <a title="My rentals" class="back-btn" href="/dashboard/my-rentals">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <a title="Remove" class="remove" href="/dashboard/my-rentals/{{$car->id}}/remove">
+            <i class="fa-regular fa-trash-can"></i>
+        </a>
+    </div>
     <form method="post" action="/dashboard/my-rentals/{{$car->id}}/update" autocomplete="off" enctype="multipart/form-data">
         @csrf
         @method("patch")
@@ -107,7 +115,11 @@
         <button type="submit">Save</button>
         @include("components.error")
         @include("components.success")
-
     </form>
+    @if (count($reviews))
+        @include("components.reviews")
+    @else
+        <div class="no-reviews">No reviews</div>
+    @endif
 </main>
 @endsection

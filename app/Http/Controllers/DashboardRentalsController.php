@@ -19,15 +19,37 @@ class DashboardRentalsController extends Controller
         return view("userRentals")->with("cars", $cars);
     }
 
-    public function myRental(Car $car): View | RedirectResponse
+    public function myRental(Request $req, Car $car): View | RedirectResponse
     {
+
         if ($car->user_id !== Auth::id()) {
             return redirect("/dashboard/my-rentals");
         }
 
+        $stars = [
+            "5" => 0,
+            "4" => 0,
+            "3" => 0,
+            "2" => 0,
+            "1" => 0,
+            "0" => 0,
+        ];
+
+        $limit = $req->limit ?? 10;
+
+        $reviews = $car->reviews()->orderBy("created_at", "desc")->limit($limit)->get();
+
+        // Get total number of reviews
+        $count = $car->reviews()->count();
+
+        foreach ($reviews as $review) {
+            $stars[$review->rating] += 1;
+            $review->reviewer = User::find($review->user_id);
+        }
+
         $options = json_decode(file_get_contents(__DIR__ . "/../../../resources/lib/car_data.json")) ?? [];
 
-        return view("userRentalUpdate")->with("car", $car)->with("options", $options);
+        return view("userRentalUpdate")->with("car", $car)->with("options", $options)->with("reviews", $reviews)->with("stars", $stars)->with("limit", $limit)->with("count", $count);
     }
 
     public function addNewRental(): View
@@ -35,6 +57,29 @@ class DashboardRentalsController extends Controller
         $options = json_decode(file_get_contents(__DIR__ . "/../../../resources/lib/car_data.json")) ?? [];
 
         return view("userRentalAdd")->with("options", $options);
+    }
+
+    public function removeRental(Car $car)
+    {
+        // Check if user owns car
+        if ($car->user_id !== Auth::id()) {
+            return redirect("/dashboard/my-rentals");
+        }
+
+        // Renmove image
+        $imagePath = __DIR__ . "/../../../public/images/cars/";
+
+        try {
+            if ($car->image !== "default_car.svg" && file_exists($imagePath . $car->image)) {
+                unlink($imagePath . $car->image);
+            }
+        } catch (\Exception $e) {
+            return back()->with(["msg" => "Failed to remove image."]);
+        }
+
+        $car->delete();
+
+        return redirect("/dashboard/my-rentals");
     }
 
     public function createRental(Request $req)
