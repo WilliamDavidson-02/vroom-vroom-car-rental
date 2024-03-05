@@ -172,6 +172,7 @@
     width: 100%;
     max-width: 100%;
     position: fixed;
+    z-index: 1;
     top: 0;
     right: -100%;
     gap: 48px;
@@ -263,7 +264,7 @@ nav {
     width: 50px;
     margin-left: auto;
     position: relative;
-
+    z-index: 2;
     span {
         height: 5px;
         width: 100%;
@@ -301,6 +302,124 @@ nav {
         cursor: pointer;
     }
 }
+
+.filter-cars {
+    @extend %flex-center;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
+    flex-direction: column;
+
+    form {
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-md;
+
+        button {
+            @extend %button-md;
+            @extend %submit-button;
+        }
+        .error {
+            color: $red-decline;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .success {
+            color: $medium-blue;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+    }
+}
+.car-cards {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-md;
+    .car-card {
+        width: 100%;
+        background: $white;
+        border-radius: $radius;
+        .car-image {
+            img {
+                max-width: 500px;
+                width: 100%;
+                border-radius: $radius;
+                max-height: 200px;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .car-card-header {
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: $padding-x-sm $padding-x-md $padding-x-sm $padding-x-md;
+            .car-card-title {
+                display: flex;
+                align-items: center;
+                gap: $gap-md;
+                .car-card-model {
+                    font-weight: bold;
+                    font-size: 1.5rem;
+                }
+            }
+            .rating {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                i {
+                    margin-left: $margin-sm;
+                }
+            }
+        }
+        .car-card-bottom-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .right-section {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                padding: 0 $padding-x-md $padding-x-md $padding-x-md;
+                .price {
+                    span {
+                        font-weight: bold;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+        .car-card-info {
+            width: 100%;
+            display: flex;
+            padding: 0 $padding-x-md $padding-x-md $padding-x-md;
+            justify-content: space-between;
+            .subinfo {
+                display: flex;
+                gap: $gap-md;
+                flex-wrap: wrap;
+                .small-info {
+                    display: flex;
+                    gap: calc($gap-sm * 2);
+                }
+            }
+        }
+    }
+    a {
+        text-decoration: none;
+        color: $dark-blue;
+    }
+}
+.total-cars {
+    padding: $padding-x-md;
+    color: $dark-blue;
+  }
 
 %page-base {
     max-width: 1440px;

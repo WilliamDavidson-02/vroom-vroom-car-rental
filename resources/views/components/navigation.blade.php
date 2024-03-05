@@ -71,7 +71,7 @@ if ($user) {
             <a href="{{ route('profile') }}">
                 <li><i class="fa-solid fa-user"></i> Profile</li>
             </a>
-            <a href="">
+            <a href="{{ route('rentalCars') }}">
                 {{-- {{ route('browsecars') }} --}}
                 <li><i class="fa-solid fa-magnifying-glass"></i> Browse Cars</li>
             </a>
@@ -83,7 +83,7 @@ if ($user) {
 @else
     <div class="off-screen-menu">
         <ul class="nav-list">
-            <a href="">
+            <a href="{{ route('rentalCars') }}">
                 {{-- {{ route('browsecars') }} --}}
                 <li><i class="fa-solid fa-magnifying-glass"></i>Browse cars</li>
             </a>
