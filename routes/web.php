@@ -37,6 +37,7 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals']);
     Route::get("/my-rentals/add", [DashboardRentalsController::class, 'addNewRental']);
     Route::post("/my-rentals/add", [DashboardRentalsController::class, 'createRental']);
+    Route::get("/my-rentals/{car}/remove", [DashboardRentalsController::class, 'removeRental']);
     Route::get("/my-rentals/{car}", [DashboardRentalsController::class, 'myRental']);
     Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
 })->middlewareGroup("dashboard", ["auth"]);
