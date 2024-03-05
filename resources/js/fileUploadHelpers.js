@@ -15,9 +15,9 @@ const initDropZone = (element) => {
 };
 
 const createPlaceholderAvatar = (file) => {
-    const avatar = dropZone.querySelector("#avatar-img");
-    const image = avatar.querySelector("img");
-    const skeleton = avatar.querySelector(".skeleton");
+    const imageContaienr = dropZone.querySelector("#image-container");
+    const image = imageContaienr.querySelector("img");
+    const skeleton = imageContaienr.querySelector(".skeleton");
 
     // Show skeleton until new image is loaded
     skeleton.style.display = "block";

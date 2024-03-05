@@ -7,8 +7,8 @@
         <form enctype="multipart/form-data" method="post" action="/profile">
             @csrf
             @method("patch")
-            <label tabindex="0" class="avatar-input" id="avatar-drop-zone" for="avatar">
-                @include("avatar")
+            <label tabindex="0" class="avatar-input" id="image-dropzone" for="avatar">
+                @include("components.avatar")
                 <input
                 type="file"
                 id="avatar"
@@ -50,8 +50,8 @@
                 <label for="password">Password</label>
             </div>
             <button type="submit">Save</button>
-            @include("error")
-            @include("success")
+            @include("components.error")
+            @include("components.success")
         </form>
     </main>
 @endsection

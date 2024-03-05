@@ -15,7 +15,7 @@
                 <label for="password">Password</label>
             </div>
             <button type="submit">Login</button>
-            @include("error")
+            @include("components.error")
             <div class="form-tab-link">
                 <span>Don't have an account? <a href="/register">Register</a></span>
             </div>

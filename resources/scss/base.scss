@@ -42,6 +42,11 @@ select {
     color: $dark-blue;
 }
 
+a {
+    color: $dark-blue;
+    text-decoration: none;
+}
+
 %flex-center {
     display: flex;
     justify-content: center;

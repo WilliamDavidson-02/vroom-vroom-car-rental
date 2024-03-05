@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer("door_count");
             $table->integer("seat_count");
             $table->boolean("gear_box");
-            $table->string("image")->nullable();
+            $table->string("image")->default("default_car.svg");
             $table->integer("year");
             $table->integer("hp");
             $table->string("fuel");

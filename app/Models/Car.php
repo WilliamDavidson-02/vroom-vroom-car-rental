@@ -26,6 +26,7 @@ class Car extends Model
         "price",
         "drive",
         "available",
+        "user_id"
     ];
 
     public function bookings(): HasMany
