@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardRentalsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
@@ -31,3 +32,11 @@ Route::get("logout", LogoutController::class)->middleware("auth")->name('logout'
 
 Route::get("profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');;
 Route::patch("profile", [ProfileController::class, "update"])->middleware("auth");
+
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals']);
+    Route::get("/my-rentals/add", [DashboardRentalsController::class, 'addNewRental']);
+    Route::post("/my-rentals/add", [DashboardRentalsController::class, 'createRental']);
+    Route::get("/my-rentals/{car}", [DashboardRentalsController::class, 'myRental']);
+    Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
+})->middlewareGroup("dashboard", ["auth"]);
