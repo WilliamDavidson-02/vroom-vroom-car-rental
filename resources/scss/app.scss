@@ -419,7 +419,7 @@ nav {
 .total-cars {
     padding: $padding-x-md;
     color: $dark-blue;
-  }
+}
 
 %page-base {
     max-width: 1440px;
@@ -585,6 +585,29 @@ nav {
         color: $medium-blue;
         margin: 64px 0;
     }
+
+    .booking-chart-container {
+        margin: 64px 0;
+
+        .head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: $gap-md;
+            padding: $padding-x-md $padding-y-md;
+
+            span {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: $dark-blue;
+            }
+
+            a {
+                padding: 0 $padding-x-sm;
+                font-size: 1.1rem;
+            }
+        }
+    }
 }
 
 .reviews-container {
@@ -592,6 +615,7 @@ nav {
     flex-direction: column;
     gap: $gap-md;
     color: $dark-blue;
+    padding: 0 $padding-x-md;
 
     h1 {
         font-size: 2.5rem;
