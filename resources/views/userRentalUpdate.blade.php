@@ -16,6 +16,8 @@
             <i class="fa-regular fa-trash-can"></i>
         </a>
     </div>
+
+    {{-- Car form --}}
     <form method="post" action="/dashboard/my-rentals/{{$car->id}}/update" autocomplete="off" enctype="multipart/form-data">
         @csrf
         @method("patch")
@@ -116,10 +118,73 @@
         @include("components.error")
         @include("components.success")
     </form>
+
+    {{-- Booking chart --}}
+    <div class="booking-chart-container">
+        <div class="head">
+            <span>{{$year}}</span>
+            <div>
+                <a href="/dashboard/my-rentals/{{$car->id}}?year={{date("Y", mktime(0, 0, 0, 0, 0, $year))}}">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                <a href="/dashboard/my-rentals/{{$car->id}}?year={{date("Y")}}">Today</a>
+                <a href="/dashboard/my-rentals/{{$car->id}}?year={{date("Y", mktime(0, 0, 0, 0, 0, $year + 2))}}">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+        <canvas id="booking-chart"></canvas>
+    </div>
+
+    {{-- Reviews --}}
     @if (count($reviews))
         @include("components.reviews")
     @else
         <div class="no-reviews">No reviews</div>
     @endif
+
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('booking-chart').getContext('2d');
+
+    const allEqual = arr => arr.every(val => val === arr[0]);
+
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: @json($bookings['labels']),
+            datasets: [{
+                label: 'Bookings',
+                data: @json($bookings['bookings']),
+                backgroundColor: "#4e71ba",
+                borderColor: '#79a2d8',
+                borderWidth: 2,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointHoverBackgroundColor: "#142e6b"
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'All bookings by year for your car.'
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: allEqual(@json($bookings['bookings'])),
+                },
+            },
+            scale: {
+                ticks: {
+                    precision: 0
+                }
+            }
+        }
+    });
+</script>
 @endsection
