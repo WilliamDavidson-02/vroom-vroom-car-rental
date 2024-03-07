@@ -19,14 +19,15 @@ class RentalCarsController extends Controller
     {
         $start_date = null;
         $end_date = null;
-        $cars = Car::all();
+        $cars = null;
         $countries = json_decode(file_get_contents(__DIR__ . "/../../../resources/lib/countries.json")) ?? [];
 
         return view('rentalCars')->with([
-            'cars' => $cars,
+
             'countries' => $countries,
             'start_date' => $start_date,
-            'end_date' => $end_date
+            'end_date' => $end_date,
+            'cars' => $cars
         ]);
     }
 
@@ -53,21 +54,27 @@ class RentalCarsController extends Controller
             $end_date = $request->end_date;
             // TODO: fix country filtering $country = $request->country;
             $countries = json_decode(file_get_contents(__DIR__ . "/../../../resources/lib/countries.json")) ?? [];
+            $requestCountry = $request->country;
+
             $cars = Car::leftJoin('bookings', function ($join) use ($start_date, $end_date) {
                 $join->on('cars.id', '=', 'bookings.car_id')
                     ->where(function ($query) use ($start_date, $end_date) {
-                        $query->where(function ($subQuery) use ($start_date, $end_date) {
-                            $subQuery->whereBetween('bookings.start_date', [$start_date, $end_date])
-                                ->orWhereBetween('bookings.end_date', [$start_date, $end_date])
-                                ->orWhere(function ($innerSubQuery) use ($start_date, $end_date) {
-                                    $innerSubQuery->where('bookings.start_date', '<', $start_date)
-                                        ->where('bookings.end_date', '>', $end_date);
-                                });
-                        });
+                        $query->whereBetween('bookings.start_date', [$start_date, $end_date])
+                            ->orWhereBetween('bookings.end_date', [$start_date, $end_date])
+                            ->orWhere(function ($innerSubQuery) use ($start_date, $end_date) {
+                                $innerSubQuery->where('bookings.start_date', '<', $start_date)
+                                    ->where('bookings.end_date', '>', $end_date);
+                            });
                     });
             })
-                ->whereNull('bookings.id')
-                ->orWhereNull('bookings.car_id')
+                ->leftJoin('users', 'users.id', '=', 'cars.user_id')
+                ->where(function ($query) use ($requestCountry) {
+                    $query->where('users.country', '=', $requestCountry);
+                })
+                ->where(function ($query) {
+                    $query->whereNull('bookings.id')
+                        ->orWhereNull('bookings.car_id');
+                })
                 ->select('cars.*')
                 ->get();
 

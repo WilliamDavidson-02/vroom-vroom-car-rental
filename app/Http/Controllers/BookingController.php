@@ -44,12 +44,11 @@ class BookingController extends Controller
                 ->withErrors(['overlap' => 'Booking dates overlap with an existing booking.'])
                 ->withInput();
         }
+        $start_date = new DateTime($req->start_date);
+        $end_date = new DateTime($req->end_date);
         $car = Car::find($req->car_id);
         $renter = User::find($req->renter_id);
         $owner = User::find($req->owner_id);
-
-        $start_date = new DateTime($req->start_date);
-        $end_date = new DateTime($req->end_date);
         $total_days = $start_date->diff($end_date)->days;
         $total_price = $car->price * $total_days;
 

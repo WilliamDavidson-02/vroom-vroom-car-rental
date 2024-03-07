@@ -22,7 +22,7 @@
                 </div>
                 {{-- {{TODO: add route to the Mybookings page once its been completed}} --}}
                 <div class="check">Remember to check your <a href="#">bookings </a> regulary!</div>
-                <div class="enjoy">Enjoy your Vroom!</div>
+                <div class="enjoy"><span>Enjoy your Vroom!</span></div>
             </div>
         </div>
 
