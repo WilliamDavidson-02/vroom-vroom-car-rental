@@ -27,8 +27,8 @@ class BookingFactory extends Factory
         // Find a start and end date that does not overlap with other bookings
         $latestBooking = Booking::where("car_id", $car->user_id)->orderBy("end_date", "desc")->first();
 
-        $startDate = new \DateTime(fake()->dateTimeBetween($latestBooking->end_date ?? date("Y-m-d"), "+1 week")->format("Y-m-d"));
-        $endDate = new \DateTime(fake()->dateTimeBetween($startDate, "+1 week")->format("Y-m-d"));
+        $startDate = new \DateTime(fake()->dateTimeBetween($latestBooking->end_date ?? date("Y-m-d"), "+1 year")->format("Y-m-d"));
+        $endDate = new \DateTime(fake()->dateTimeBetween($startDate, $startDate->format("Y-m-d H:i:s") . "+1 week")->format("Y-m-d"));
 
         // Calculate total price for the car
         $days = $startDate->diff($endDate)->days;
