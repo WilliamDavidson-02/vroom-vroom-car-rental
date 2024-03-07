@@ -34,7 +34,7 @@ Route::post("register", [RegisterController::class, "createAccount"])->middlewar
 
 Route::get("logout", LogoutController::class)->middleware("auth")->name('logout');
 
-Route::get("profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');;
+Route::get("profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');
 Route::patch("profile", [ProfileController::class, "update"])->middleware("auth");
 
 
@@ -45,10 +45,11 @@ Route::get("/rentalCars/{car}", [RentalCarsController::class, "aCar"]);
 
 Route::post('/createBooking', [BookingController::class, 'createBooking']);
 
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals'])->name("myRentals");
+Route::group(['prefix' => 'dashboard', "middleware" => "auth"], function () {
+    Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals'])->name('myRentals');
     Route::get("/my-rentals/add", [DashboardRentalsController::class, 'addNewRental']);
     Route::post("/my-rentals/add", [DashboardRentalsController::class, 'createRental']);
+    Route::delete("/my-rentals/{car}/remove", [DashboardRentalsController::class, 'removeRental']);
     Route::get("/my-rentals/{car}", [DashboardRentalsController::class, 'myRental']);
     Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
-})->middlewareGroup("dashboard", ["auth"]);
+});

@@ -103,7 +103,7 @@
             </select>
             <label for="available">Status</label>
         </div>
-        <button type="submit">Add</button>
+        <button class="submit" type="submit">Add</button>
         @include("components.error")
         @include("components.success")
 
