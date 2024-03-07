@@ -31,11 +31,7 @@ if ($user) {
 @if ($user)
     <div class="off-screen-menu">
         <div class="user">
-            @if ($user->avatar == null || $user->avatar == '')
-                <img src="/images/avatars/default_user.png" alt="">
-            @else
-                <img src="{{ url('/images/avatars/' . $user->avatar . '.png') }}" alt="">
-            @endif
+            @include('components.avatar')
             <div class="info">
                 <div class="name"> {{ $user->first_name . ' ' . $user->last_name }} </div>
                 <div class="rating">
@@ -51,8 +47,7 @@ if ($user) {
             </div>
         </div>
         <ul class="nav-list">
-            <a href="">
-                {{-- {{ route('mycars') }} --}}
+            <a href="{{ route('myRentals') }}">
                 <li><i class="fa-solid fa-car"></i> My Cars</li>
             </a>
             <a href="">
@@ -72,7 +67,6 @@ if ($user) {
                 <li><i class="fa-solid fa-user"></i> Profile</li>
             </a>
             <a href="{{ route('rentalCars') }}">
-                {{-- {{ route('browsecars') }} --}}
                 <li><i class="fa-solid fa-magnifying-glass"></i> Browse Cars</li>
             </a>
             <a href="{{ route('logout') }}">
@@ -84,7 +78,6 @@ if ($user) {
     <div class="off-screen-menu">
         <ul class="nav-list">
             <a href="{{ route('rentalCars') }}">
-                {{-- {{ route('browsecars') }} --}}
                 <li><i class="fa-solid fa-magnifying-glass"></i>Browse cars</li>
             </a>
             <a href="{{ route('login') }}">
