@@ -639,6 +639,11 @@ nav {
                 }
             }
         }
+        .error {
+            color: $red-decline;
+            text-align: center;
+            font-size: 0.875rem;
+        }
         .reviews {
             display: flex;
             flex-direction: column;
@@ -686,6 +691,43 @@ nav {
             outline-color: $dark-blue;
             outline-width: 2px;
             width: 100%;
+        }
+    }
+}
+.booking-success-page {
+    @extend %page-base;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
+    flex-direction: column;
+    color: $dark-blue;
+    height: 100vh;
+    .booking-success {
+        padding-top: $padding-x-md;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-sm;
+        margin: 0 auto;
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        gap: $gap-md;
+        text-align: center;
+        .booking-success-top,
+        .booking-success-bottom {
+            padding: $padding-y-md $padding-x-md;
+            color: $white;
+            background: $medium-blue;
+            border-radius: $radius;
+            .booking-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            > div {
+                span {
+                    font-weight: bold;
+                }
+            }
         }
     }
 }

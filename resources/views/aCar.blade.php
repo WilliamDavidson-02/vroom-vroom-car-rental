@@ -64,18 +64,29 @@ use App\Models\User;
                 <div class="owner">
                     @include('components.avatar')
                     <div class="owner-info">
-                        <div class="name">{{ $user->first_name . ' ' . $user->last_name }}</div>
-                        <div class="country"> {{ $user->country }}</div>
+                        <div class="name">{{ $owner->first_name . ' ' . $owner->last_name }}</div>
+                        <div class="country"> {{ $owner->country }}</div>
                     </div>
 
                 </div>
-                <form action="/bookCar" Method="POST">
-                    <input type="hidden" id="user" name="user" value="{{ $user->id }}" />
-                    <input type="hidden" id="car" name="car" value="{{ $car->id }}" />
-                    <input type="hidden" id="start_date" name="start_date" value="" />
-                    <input type="hidden" id="end_date" name="end_date" value="" />
-                    <button type="submit" class="Book">Book the Vroom -></button>
-                </form>
+
+                @if ($user == null)
+                    {{-- TODO:: Create a route to take the user back to the vroom when they have logged in --}}
+                    <a href="{{ route('login') }}">
+                        <button>Login to Book the Vroom -></button></a>
+                @else
+                    <form action="/createBooking" Method="POST">
+                        @csrf
+                        <input type="hidden" id="renter_id" name="renter_id" value="{{ $user->id }}" />
+                        <input type="hidden" id="car_id" name="car_id" value="{{ $car->id }}" />
+                        <input type="hidden" id="owner_id" name="owner_id" value="{{ $car->user_id }}">
+                        <input type="hidden" id="start_date" name="start_date" value="{{ $start_date }}" />
+                        <input type="hidden" id="end_date" name="end_date" value="{{ $end_date }}" />
+                        <button type="submit" class="Book">Book the Vroom -></button>
+                    </form>
+                @endif
+
+                @include('components.error')
 
 
                 @if (count($reviews) != 0)
