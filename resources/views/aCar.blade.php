@@ -40,17 +40,17 @@ use App\Models\User;
                     <div class="small-info seats"><img src="/images/person.svg" alt="">{{ $car->seat_count }}
                     </div>
                     <div class="small-info door"><img src="/images/door.svg" alt="">{{ $car->door_count }}</div>
-                    <div class="small-info hp"><img src="/images/gauge.svg" alt="">{{ $car->hp }} hp
+                    <div class="small-info hp"><img src="/images/hp.svg" alt="">{{ $car->hp }} hp
                     </div>
-                    <div class="small-info fuel"><img src="/images/gauge.svg" alt="">{{ $car->fuel }}
+                    <div class="small-info fuel"><img src="/images/fuel.svg" alt="">{{ $car->fuel }}
                     </div>
                     <div class="small-info fuel_efficiency"><img src="/images/gauge.svg"
                             alt="">{{ $car->fuel_efficiency }}L/100km
                     </div>
-                    <div class="small-info registration"><img src="/images/gauge.svg" alt="">
+                    <div class="small-info registration"><img src="/images/license.svg" alt="">
                         {{ $car->registration }}
                     </div>
-                    <div class="small-info registration"><img src="/images/gauge.svg" alt="">
+                    <div class="small-info drive"><img src="/images/drive.svg" alt="">
                         @if ($car->drive == 'fwd')
                             Frontwheel Drive
                         @elseif ($car->drive == 'rwd')

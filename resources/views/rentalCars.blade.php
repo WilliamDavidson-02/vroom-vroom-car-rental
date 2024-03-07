@@ -94,8 +94,8 @@ use App\Models\User;
                                     </div>
                                     <div class="small-info door"><img src="/images/door.svg"
                                             alt="">{{ $car->door_count }}</div>
-                                    <div class="small-info hp"><img src="/images/gauge.svg"
-                                            alt="">{{ $car->hp }}
+                                    <div class="small-info hp"><img src="/images/hp.svg" alt="">{{ $car->hp }}
+                                        hp
                                     </div>
                                 </div>
                             </div>
