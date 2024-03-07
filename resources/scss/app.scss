@@ -309,6 +309,7 @@ nav {
     max-width: 1440px;
     width: 100%;
     flex-direction: column;
+    color: $dark-blue;
 
     form {
         max-width: 500px;
@@ -419,7 +420,7 @@ nav {
 .total-cars {
     padding: $padding-x-md;
     color: $dark-blue;
-  }
+}
 
 %page-base {
     max-width: 1440px;
@@ -563,6 +564,128 @@ nav {
             color: $medium-blue;
             text-align: center;
             font-size: 0.875rem;
+        }
+    }
+}
+.car-page {
+    @extend %page-base;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 100%;
+    flex-direction: column;
+    color: $dark-blue;
+    .car-info {
+        padding-top: $padding-x-md;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-sm;
+        margin: 0 auto;
+        max-width: 500px;
+        width: 100%;
+        .car-header {
+            display: flex;
+            padding: $padding-x-md $padding-y-md;
+            justify-content: space-between;
+            .car-title {
+                display: flex;
+                gap: $gap-md;
+                align-items: center;
+                .name {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                }
+            }
+            .car-rating {
+                display: flex;
+                align-self: center;
+                gap: 8px;
+            }
+        }
+        .image-container img {
+            width: 100%;
+            border-radius: $radius;
+        }
+        .car-subheader {
+            display: flex;
+            justify-content: space-between;
+            .price {
+                font-weight: bold;
+            }
+        }
+        .car-subheader {
+            padding: $padding-y-md $padding-x-md;
+        }
+        .subinfo {
+            padding: $padding-y-md $padding-x-md;
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            .small-info {
+                display: flex;
+                gap: $gap-sm;
+                width: 50%;
+            }
+        }
+        .owner {
+            display: flex;
+            gap: $gap-md;
+            align-items: center;
+            padding: $padding-x-md $padding-x-md;
+            .owner-info {
+                display: flex;
+                flex-direction: column;
+                .name {
+                    font-weight: bold;
+                }
+            }
+        }
+        .reviews {
+            display: flex;
+            flex-direction: column;
+            gap: $gap-md;
+            padding: $padding-x-md $padding-y-md;
+            .reviews-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            .review {
+                display: flex;
+                flex-direction: column;
+                gap: $gap-sm;
+                .user {
+                    display: flex;
+                    justify-content: space-between;
+                    .user-info {
+                        display: flex;
+                        gap: $gap-md;
+                        .info {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        }
+                    }
+                }
+                .time {
+                    align-self: flex-end;
+                    padding-bottom: $padding-y-sm;
+                }
+            }
+        }
+    }
+    form {
+        padding: $padding-y-md 0;
+        button {
+            @extend %button-md;
+            background-color: $light-blue;
+            border: 1px solid $medium-blue;
+            border-radius: 8px;
+            color: #f9f7f6;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s ease-out;
+            outline-color: $dark-blue;
+            outline-width: 2px;
+            width: 100%;
         }
     }
 }

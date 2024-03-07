@@ -39,12 +39,12 @@ Route::patch("profile", [ProfileController::class, "update"])->middleware("auth"
 
 Route::get('/rentalCars', [RentalCarsController::class, 'index'])->name('rentalCars');
 Route::post("/rentalCars", [RentalCarsController::class, "filterCars"]);
+Route::get("/rentalCars/{car}", [RentalCarsController::class, "aCar"]);
 
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals']);
+    Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals'])->name("myRentals");
     Route::get("/my-rentals/add", [DashboardRentalsController::class, 'addNewRental']);
     Route::post("/my-rentals/add", [DashboardRentalsController::class, 'createRental']);
     Route::get("/my-rentals/{car}", [DashboardRentalsController::class, 'myRental']);
     Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
 })->middlewareGroup("dashboard", ["auth"]);
-
