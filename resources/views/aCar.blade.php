@@ -17,7 +17,7 @@ use App\Models\User;
                     </div>
                     <div class="car-rating">
                         @if ($rating != 0)
-                            {{ $rating / count($reviews) }} /5 <i class="fa-solid fa-star"></i>
+                            {{ floor($rating / count($reviews)) }} /5 <i class="fa-solid fa-star"></i>
                         @else
                         @endif
                     </div>
@@ -47,7 +47,7 @@ use App\Models\User;
                     <div class="small-info fuel_efficiency"><img src="/images/gauge.svg"
                             alt="">{{ $car->fuel_efficiency }}L/100km
                     </div>
-                    <div class="small-info registration"><img src="/images/license.svg" alt="">
+                    <div class="small-info registration"><img src="/images/licence.svg" alt="">
                         {{ $car->registration }}
                     </div>
                     <div class="small-info drive"><img src="/images/drive.svg" alt="">
@@ -73,7 +73,7 @@ use App\Models\User;
                 @if ($user == null)
                     {{-- TODO:: Create a route to take the user back to the vroom when they have logged in --}}
                     <a href="{{ route('login') }}">
-                        <button>Login to Book the Vroom -></button></a>
+                        <button class="car-login-button">Login to Book the Vroom -></button></a>
                 @else
                     <form action="/createBooking" Method="POST">
                         @csrf

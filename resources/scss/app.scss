@@ -745,6 +745,19 @@ nav {
                 width: 50%;
             }
         }
+        .car-login-button {
+            @extend %button-md;
+            background-color: $light-blue;
+            border: 1px solid $medium-blue;
+            border-radius: 8px;
+            color: #f9f7f6;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s ease-out;
+            outline-color: $dark-blue;
+            outline-width: 2px;
+            width: 100%;
+        }
         .owner {
             display: flex;
             gap: $gap-md;

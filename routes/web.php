@@ -43,7 +43,7 @@ Route::get('/rentalCars', [RentalCarsController::class, 'index'])->name('rentalC
 Route::post("/rentalCars", [RentalCarsController::class, "filterCars"]);
 Route::get("/rentalCars/{car}", [RentalCarsController::class, "aCar"]);
 
-Route::post('/createBooking', [BookingController::class, 'createBooking']);
+Route::post('/createBooking', [BookingController::class, 'createBooking'])->middleware('auth');
 
 Route::group(['prefix' => 'dashboard', "middleware" => "auth"], function () {
     Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals'])->name('myRentals');
