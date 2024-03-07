@@ -12,9 +12,13 @@
         <a title="My rentals" class="back-btn" href="/dashboard/my-rentals">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
-        <a title="Remove" class="remove" href="/dashboard/my-rentals/{{$car->id}}/remove">
-            <i class="fa-regular fa-trash-can"></i>
-        </a>
+        <form action="/dashboard/my-rentals/{{$car->id}}/remove" method="post">
+            @csrf
+            @method("delete")
+            <button title="Remove" class="remove" type="submit">
+                <i class="fa-regular fa-trash-can"></i>
+            </button>
+        </form>
     </div>
 
     {{-- Car form --}}
@@ -114,7 +118,7 @@
             </select>
             <label for="available">Status</label>
         </div>
-        <button type="submit">Save</button>
+        <button class="submit" type="submit">Save</button>
         @include("components.error")
         @include("components.success")
     </form>
@@ -173,6 +177,9 @@
                     display: true,
                     text: 'All bookings by year for your car.'
                 },
+            },
+            interaction: {
+                intersect: false,
             },
             scales: {
                 y: {
