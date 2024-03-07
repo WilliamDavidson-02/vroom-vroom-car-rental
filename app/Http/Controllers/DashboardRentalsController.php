@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class DashboardRentalsController extends Controller
 {
@@ -124,7 +125,7 @@ class DashboardRentalsController extends Controller
             "brand" => ["required", "string"],
             "model" => ["required", "string"],
             "type" => ["required", "string", "in:$types"],
-            "gear_box" => ["required", "string", "in:1,0"],
+            "gear_box" => ["required", Rule::in(['1', '0', true, false])],
             "drive" => ["required", "string", "in:$drives"],
             "door_count" => ["required", "numeric", "between:2, 5"],
             "seat_count" => ["required", "numeric", "between:1, 100"],
@@ -134,7 +135,7 @@ class DashboardRentalsController extends Controller
             "fuel_efficiency" => ["required", "numeric", "between:1,100"],
             "registration" => ["required", "string"],
             "price" => ["required", "numeric", "min:1"],
-            "available" => ["required", "numeric", "in:1,0"]
+            "available" => ["required", Rule::in(['1', '0', true, false])]
         ]);
 
         $data = $req->all();
@@ -192,7 +193,7 @@ class DashboardRentalsController extends Controller
             "brand" => ["required", "string"],
             "model" => ["required", "string"],
             "type" => ["required", "string", "in:$types"],
-            "gear_box" => ["required", "string", "in:1,0"],
+            "gear_box" => ["required", Rule::in(['1', '0', true, false])],
             "drive" => ["required", "string", "in:$drives"],
             "door_count" => ["required", "numeric", "between:2, 5"],
             "seat_count" => ["required", "numeric", "between:1, 100"],
@@ -202,10 +203,10 @@ class DashboardRentalsController extends Controller
             "fuel_efficiency" => ["required", "numeric", "between:1,100"],
             "registration" => ["required", "string"],
             "price" => ["required", "numeric", "min:1"],
-            "available" => ["required", "numeric", "in:1,0"]
+            "available" => ["required", Rule::in(['1', '0', true, false])]
         ]);
 
-        $data = $req->only(["barnd", "model", "type", "gear_box", "drive", "door_count", "seat_count", "year", "hp", "fuel", "fuel_efficiency", "registration", "price", "available"]);
+        $data = $req->only(["brand", "model", "type", "gear_box", "drive", "door_count", "seat_count", "year", "hp", "fuel", "fuel_efficiency", "registration", "price", "available"]);
         $car->update($data);
 
         // Update image in cars table and public folder

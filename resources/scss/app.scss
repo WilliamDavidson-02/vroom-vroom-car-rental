@@ -513,6 +513,10 @@ nav {
 
         .remove {
             color: $red-decline;
+            border: none;
+            background: none;
+            padding: 0;
+            font-size: 1.3rem;
         }
     }
 
@@ -559,7 +563,7 @@ nav {
             gap: $gap-md;
         }
 
-        button {
+        .submit {
             @extend %submit-button;
             padding: $padding-y-md $padding-x-md;
             width: 100%;
