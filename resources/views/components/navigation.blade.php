@@ -47,6 +47,9 @@ if ($user) {
             </div>
         </div>
         <ul class="nav-list">
+            <a href="{{ route('rentalCars') }}">
+                <li><i class="fa-solid fa-magnifying-glass"></i> Browse Cars</li>
+            </a>
             <a href="{{ route('myRentals') }}">
                 <li><i class="fa-solid fa-car"></i> My Cars</li>
             </a>
@@ -57,7 +60,9 @@ if ($user) {
             <a href="">
                 {{-- {{ route('requests') }} --}}
                 <li><i class="fa-solid fa-hand-holding-dollar"></i> requests
-                    @if ($notification > 0)
+                    @if ($notification > 9)
+                        <div class="notification">9+</div>
+                    @elseif($notification > 0)
                         <div class="notification">{{ $notification }}</div>
                     @endif
 
@@ -66,8 +71,8 @@ if ($user) {
             <a href="{{ route('profile') }}">
                 <li><i class="fa-solid fa-user"></i> Profile</li>
             </a>
-            <a href="{{ route('rentalCars') }}">
-                <li><i class="fa-solid fa-magnifying-glass"></i> Browse Cars</li>
+            <a href="{{ route('userDashboard') }}">
+                <li><i class="fa-solid fa-chalkboard-user"></i> Dashboard</li>
             </a>
             <a href="{{ route('logout') }}">
                 <li><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</li>
@@ -90,12 +95,16 @@ if ($user) {
     </div>
 @endif
 <nav>
-    <div class="logo"><img src="/images/runnerlogo1.png" alt=""></div>
+    <a href="{{ route('rentalCars') }}">
+        <div class="logo"><img src="/images/runnerlogo1.png" alt=""></div>
+    </a>
     <div class="ham-menu">
         <span></span>
         <span></span>
         <span></span>
-        @if ($user && $notification > 0)
+        @if ($user && $notification > 9)
+            <div class="notification">9+</div>
+        @elseif($user && $notification > 0)
             <div class="notification">{{ $notification }}</div>
         @endif
     </div>

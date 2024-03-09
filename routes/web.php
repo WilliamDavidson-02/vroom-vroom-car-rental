@@ -7,8 +7,8 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentalCarsController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-
 
 
 /*
@@ -22,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RentalCarsController::class, "index"]);
 
 Route::get("login", [LoginController::class, "index"])->middleware("guest")->name('login');
 Route::post("login", [LoginController::class, "login"])->middleware("guest");
@@ -37,7 +35,7 @@ Route::get("logout", LogoutController::class)->middleware("auth")->name('logout'
 Route::get("profile", [ProfileController::class, "index"])->middleware("auth")->name('profile');
 Route::patch("profile", [ProfileController::class, "update"])->middleware("auth");
 
-
+Route::get("/userDashboard", [DashboardController::class, 'index'])->middleware("auth")->name("userDashboard");
 
 Route::get('/rentalCars', [RentalCarsController::class, 'index'])->name('rentalCars');
 Route::post("/rentalCars", [RentalCarsController::class, "filterCars"]);

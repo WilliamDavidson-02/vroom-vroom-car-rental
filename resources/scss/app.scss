@@ -230,9 +230,14 @@
             width: 30px;
         }
         .notification {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: 50%;
             background: $red-decline;
             font-size: 1rem;
+            height: 32px;
+            width: 32px;
             padding: 6px;
         }
     }
@@ -252,11 +257,16 @@ nav {
         position: absolute;
         right: -5px;
         top: -5px;
-        background: $red-decline;
-        border-radius: 50%;
-        padding: 6px;
         font-size: 0.65rem;
         color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background: $red-decline;
+        height: 24px;
+        width: 24px;
+        padding: 6px;
     }
 }
 .ham-menu {
@@ -334,12 +344,33 @@ nav {
             font-size: 0.875rem;
         }
     }
+    @media (min-width: $desktop-res) {
+        form {
+            max-width: 1440px;
+            flex-direction: row;
+            justify-content: center;
+            .input-container:nth-child(4) {
+                width: 20%;
+            }
+        }
+        .car-cards {
+            max-width: 1440px;
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(calc((1440px / 4) - 48px), 1fr)
+            );
+            gap: $gap-md;
+        }
+    }
 }
 .car-cards {
     max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(calc((1440px / 4) - 48px), 1fr)
+    );
     gap: $gap-md;
     .car-card {
         width: 100%;
@@ -860,6 +891,109 @@ nav {
                     font-weight: bold;
                 }
             }
+        }
+    }
+}
+.user-dashboard {
+    text-align: center;
+    color: $dark-blue;
+    .container {
+        @extend %flex-center;
+        @extend %page-base;
+        margin: 0 auto;
+        max-width: 1440px;
+        width: 100%;
+        flex-direction: column;
+        color: $dark-blue;
+        gap: $gap-md;
+        text-align: center;
+        .first-container {
+            gap: $gap-md;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            .data-points {
+                display: flex;
+                justify-content: space-between;
+                gap: $gap-md;
+                .earned {
+                    flex-grow: 1;
+                }
+                .best-performance {
+                    flex-grow: 1;
+                }
+            }
+        }
+        .second-container {
+            gap: $gap-md;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            .requests {
+                display: flex;
+                justify-content: space-between;
+                gap: $gap-md;
+                flex-wrap: wrap;
+                .request {
+                    flex-grow: 1;
+                }
+            }
+        }
+        .chart-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            gap: $gap-md;
+            margin-bottom: $margin-sm;
+            .chart-header {
+            }
+            .chart-footer {
+                display: flex;
+                gap: $gap-md;
+                justify-content: center;
+            }
+        }
+        .chart-header,
+        .data-point-title,
+        .requests-header {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .data-card {
+            border-radius: $radius;
+            background: rgb(235, 235, 235);
+            padding: $padding-x-md;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .heading {
+            font-weight: 500;
+        }
+    }
+    @media (min-width: $desktop-res) {
+        .container {
+            flex-direction: row;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .data-points,
+        .requests {
+            flex-direction: column;
+        }
+        .first-container {
+            max-width: 350px !important;
+            max-width: 350px;
+        }
+        .second-container {
+            max-width: 350px !important;
+        }
+        .chart-container {
+            max-width: 700px !important;
         }
     }
 }
