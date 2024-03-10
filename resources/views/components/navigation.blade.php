@@ -53,12 +53,10 @@ if ($user) {
             <a href="{{ route('myRentals') }}">
                 <li><i class="fa-solid fa-car"></i> My Cars</li>
             </a>
-            <a href="">
-                {{-- {{ route('bookings') }} --}}
+            <a href="{{ route('myBookings') }}">
                 <li><i class="fa-solid fa-calendar-days"></i> Bookings</li>
             </a>
-            <a href="{{route("requests")}}">
-                {{-- {{ route('requests') }} --}}
+            <a href="{{ route('requests') }}">
                 <li><i class="fa-solid fa-hand-holding-dollar"></i> requests
                     @if ($notification > 9)
                         <div class="notification">9+</div>
