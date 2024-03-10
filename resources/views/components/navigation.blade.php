@@ -57,7 +57,7 @@ if ($user) {
                 {{-- {{ route('bookings') }} --}}
                 <li><i class="fa-solid fa-calendar-days"></i> Bookings</li>
             </a>
-            <a href="">
+            <a href="{{route("requests")}}">
                 {{-- {{ route('requests') }} --}}
                 <li><i class="fa-solid fa-hand-holding-dollar"></i> requests
                     @if ($notification > 9)

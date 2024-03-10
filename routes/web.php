@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllRentalRequestsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardRentalsController;
 use App\Http\Controllers\LoginController;
@@ -50,4 +51,6 @@ Route::group(['prefix' => 'dashboard', "middleware" => "auth"], function () {
     Route::delete("/my-rentals/{car}/remove", [DashboardRentalsController::class, 'removeRental']);
     Route::get("/my-rentals/{car}", [DashboardRentalsController::class, 'myRental']);
     Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
+
+    Route::get("/requests", [AllRentalRequestsController::class, "index"])->name("requests");
 });
