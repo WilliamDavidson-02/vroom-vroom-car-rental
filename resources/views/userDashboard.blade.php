@@ -21,7 +21,7 @@
                             You don't have any cars yet, or your cars haven't accumulated any bookings.
                         @else
                             <a href="/dashboard/my-rentals/{{ $bestPerformer->id }}">
-                                <div class="car">{{ $bestPerformer->brand }} {{ $bestPerformer->model }} :</div>
+                                <div class="car">{{ $bestPerformer->brand }} {{ $bestPerformer->model }}</div>
                             </a>
                             <div class="data">
                                 ${{ $bestPerformer->total_cost_of_bookings }}</div>
