@@ -47,12 +47,12 @@ class RentalCarsController extends Controller
     }
     public function filterCars(Request $request)
     {
+        $user = Auth::user();
         if (!$request->has('start_date') || !$request->has('end_date')) {
             return back()->withErrors(["msg" => "You need both Start and End date, country is optional"]);
         } else {
             $start_date = $request->start_date;
             $end_date = $request->end_date;
-            // TODO: fix country filtering $country = $request->country;
             $countries = json_decode(file_get_contents(__DIR__ . "/../../../resources/lib/countries.json")) ?? [];
             $requestCountry = $request->country;
 
@@ -75,6 +75,7 @@ class RentalCarsController extends Controller
                     $query->whereNull('bookings.id')
                         ->orWhereNull('bookings.car_id');
                 })
+                ->where('cars.user_id', '!=', $user->id)
                 ->select('cars.*')
                 ->get();
 
