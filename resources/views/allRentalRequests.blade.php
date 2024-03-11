@@ -59,7 +59,7 @@
         @if (!$bookings->isEmpty())
             <div class="grid">
                 @foreach ($bookings as $booking)
-                    <div class="card">
+                    <div class="card" data-id="{{$booking->id}}">
                         <div class="header">
                             <span>{{$booking->brand}}</span>
                             <span>{{$booking->model}}</span>
@@ -69,7 +69,7 @@
                                 <div class="skeleton"></div>
                                 <img loading="lazy" src="/images/cars/{{$booking->image ?? "default_car.svg"}}" alt="car">
                             </div>
-                            <div class="content {{$booking->accepted == 1 ? "accepte" : ($booking->accepted === 0 ? "decline" : "")}}">
+                            <div class="content {{$booking->accepted == 1 ? "accept" : ($booking->accepted === 0 ? "decline" : "")}}">
                                 <span>
                                     <strong>Start</strong>
                                     <div>{{$booking->start_date}}</div>
@@ -80,7 +80,7 @@
                                 </span>
                                 @if ($booking->accepted === null)
                                     <div class="space">
-                                        <a class="accepte" href="">
+                                        <a class="accept" href="">
                                             <i class="fa-solid fa-check"></i>
                                         </a>
                                         <a class="decline" href="">
@@ -107,6 +107,8 @@
 
         const pagLinks = document.querySelectorAll(".rental-requests #pag");
         const searchForm = document.querySelector(".rental-requests #search")
+
+        const cars = document.querySelectorAll(".grid .card");
 
         // Set min date for sibling
         startDate.addEventListener("input", ({ target }) => endDate.min = target.value)
@@ -138,9 +140,9 @@
 
         // pagination
         pagLinks.forEach(link => {
-            // Set disabled lins
             const page = link.getAttribute("data-page");
 
+            // Set disabled lins
             if (page < 1 || page > @json($lastPage)) {
                 link.disabled = true;
                 link.classList.add("disabled")
@@ -151,6 +153,14 @@
 
                 serachParams(page);
             })
+        })
+
+        cars.forEach(card => {
+            const id = card.getAttribute("data-id");
+
+             card.addEventListener("click", () => {
+                window.location.href = `/dashboard/requests/${id}`
+             })
         })
     </script>
 @endsection

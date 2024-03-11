@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AllRentalRequestsController extends Controller
 {
@@ -29,18 +30,18 @@ class AllRentalRequestsController extends Controller
         ]);
 
         $pageLimit = 21;
-        $query = Booking::where("owner_id", "=", $user->id)
-            ->join("cars", "cars.user_id", "=", "bookings.owner_id")
+        $query = Booking::join("cars", "cars.id", "=", "bookings.car_id")
+            ->where("owner_id", "=", $user->id)
             ->select(
-                "cars.brand",
-                "cars.model",
-                "cars.image",
+                "bookings.id",
                 "bookings.start_date",
                 "bookings.end_date",
                 "bookings.accepted",
-                "bookings.id"
+                "cars.brand",
+                "cars.model",
+                "cars.image"
             )
-            ->orderBy("bookings.start_date", "desc");
+            ->orderBy("start_date", "desc");
 
         // Request values
         $start_date = $req->start_date;
@@ -81,8 +82,6 @@ class AllRentalRequestsController extends Controller
 
         // Execute query
         $bookings =  $query->paginate($pageLimit);
-
-        // dd($bookings);
 
         // Pages
         $currentPage = $bookings->currentPage();
