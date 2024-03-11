@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentalCarsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RentalRequestController;
 use App\Http\Controllers\myBookingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,5 +57,6 @@ Route::group(['prefix' => 'dashboard', "middleware" => "auth"], function () {
     Route::patch("/my-rentals/{car}/update", [DashboardRentalsController::class, 'updateRental']);
 
     Route::get("/requests", [AllRentalRequestsController::class, "index"])->name("requests");
+    Route::get("/requests/{booking}", [RentalRequestController::class, "index"])->name("request");
     Route::get("/myBookings", [myBookingsController::class, "index"])->middleware("auth")->name("myBookings");
 });

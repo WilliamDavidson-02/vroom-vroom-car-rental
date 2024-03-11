@@ -137,6 +137,25 @@
     z-index: 10;
 }
 
+%base-image-container {
+    position: relative;
+
+    .skeleton {
+        width: 100%;
+        height: 100%;
+        flex-grow: 1;
+        border-radius: $radius;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: $radius;
+    }
+}
+
 .avatar {
     aspect-ratio: 1 / 1;
     height: 100%;
@@ -485,20 +504,10 @@ nav {
 
     .car-card {
         .image-container {
+            @extend %base-image-container;
             aspect-ratio: 16/9;
-            position: relative;
-
-            .skeleton {
-                width: 100%;
-                flex-grow: 1;
-                border-radius: $radius;
-            }
 
             img {
-                width: 100%;
-                object-fit: cover;
-                object-position: center;
-                border-radius: $radius;
                 margin-bottom: $gap-md;
             }
         }
@@ -572,22 +581,9 @@ nav {
             }
 
             .image-container {
-                height: 100%;
+                @extend %base-image-container;
                 aspect-ratio: 16/9;
-                position: relative;
-
-                .skeleton {
-                    width: 100%;
-                    flex-grow: 1;
-                    border-radius: $radius;
-                }
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center;
-                }
+                height: 100%;
             }
         }
 
@@ -956,9 +952,17 @@ nav {
         }
 
         .card {
+            cursor: pointer;
             color: $dark-blue;
             padding: $padding-y-sm $padding-x-sm;
             border-radius: $radius;
+            transition: 0.3s;
+
+            &:hover {
+                transition: 0.3s;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+                    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            }
 
             .body {
                 display: grid;
@@ -969,22 +973,7 @@ nav {
                 }
 
                 .image-container {
-                    position: relative;
-
-                    .skeleton {
-                        width: 100%;
-                        height: 100%;
-                        flex-grow: 1;
-                        border-radius: $radius;
-                    }
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                        border-radius: $radius;
-                    }
+                    @extend %base-image-container;
                 }
 
                 .content {
@@ -1025,7 +1014,7 @@ nav {
             }
         }
 
-        .accepte {
+        .accept {
             background: $green-accept;
             color: $white;
         }
@@ -1034,6 +1023,146 @@ nav {
             background: $red-decline;
             color: $white;
         }
+    }
+}
+
+.rental-request {
+    @extend %page-base;
+    max-width: 800px;
+    padding: $padding-y-md $padding-x-md;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+            font-size: 1.5rem;
+        }
+
+        h1 {
+            font-weight: 500;
+            color: $dark-blue;
+            margin: 0;
+        }
+    }
+
+    .car-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .image-container {
+            aspect-ratio: 16/9;
+            @extend %base-image-container;
+
+            .skeleton {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+
+            img {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        .content {
+            color: $white;
+            background: $light-blue;
+            padding: $padding-y-md $padding-x-md;
+            border-bottom-left-radius: $radius;
+            border-bottom-right-radius: $radius;
+
+            span {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+
+                strong {
+                    grid-column: span 1;
+                    color: $dark-blue;
+                }
+
+                div {
+                    grid-column: span 3;
+                }
+            }
+        }
+    }
+
+    .renter {
+        color: $dark-blue;
+        background: $light-blue;
+        padding: $padding-y-md $padding-x-md;
+        border-radius: $radius;
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: $gap-md;
+            max-height: 100px;
+
+            .image-container {
+                grid-column: span 1;
+            }
+
+            span {
+                grid-column: span 3;
+                color: $white;
+            }
+        }
+
+        ul {
+            padding: 0 $padding-x-sm;
+
+            li {
+                list-style: none;
+                padding-bottom: $padding-x-sm;
+
+                span,
+                a {
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    .actions-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $gap-md;
+
+        a {
+            text-align: center;
+            border-radius: $radius;
+            padding: $padding-y-md $padding-x-md;
+        }
+    }
+
+    .accept {
+        background: $green-accept !important;
+
+        &,
+        strong {
+            color: $white !important;
+        }
+    }
+
+    .decline {
+        background: $red-decline !important;
+
+        &,
+        strong {
+            color: $white !important;
+        }
+    }
+
+    .status {
+        text-align: center;
+        color: $dark-blue;
     }
 }
 
@@ -1162,6 +1291,7 @@ nav {
         }
     }
 }
+
 .my-bookings {
     @extend %page-base;
     margin-top: 24px;
@@ -1234,3 +1364,4 @@ nav {
         }
     }
 }
+
