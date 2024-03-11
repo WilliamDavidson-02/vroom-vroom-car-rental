@@ -1299,6 +1299,12 @@ nav {
     h1 {
         text-align: center;
     }
+    .no-booking {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #79a2d8;
+    }
     .bookings-grid {
         display: grid;
         gap: $gap-md;
@@ -1343,23 +1349,70 @@ nav {
                 }
             }
             .content {
+                text-align: center;
+                justify-content: center;
                 display: flex;
                 flex-direction: column;
                 gap: $gap-md;
                 padding: $padding-y-md $padding-x-sm;
                 border-radius: $radius;
+                color: $white;
+                &.accepted {
+                    background-color: $green-accept;
+                }
+                &.declined {
+                    background-color: $red-decline;
+                }
+                &.pending {
+                    background-color: $yellow-pending;
+                }
             }
             .status {
                 font-weight: 500;
-                .accepted {
-                    color: $green-accept;
-                }
-                .declined {
-                    color: $red-decline;
-                }
-                .pending {
-                    color: $yellow-pending;
-                }
+            }
+        }
+    }
+    .review {
+        grid-column: 1 / 3;
+    }
+
+    .accordion {
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+        font-weight: 500;
+        background-color: $light-blue;
+        border-radius: $radius;
+        padding: $padding-x-md;
+        color: $white;
+        display: flex;
+        justify-content: space-between;
+        &:hover {
+            background-color: $medium-blue;
+        }
+        .active {
+            background-color: $medium-blue;
+        }
+    }
+    .panel {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            padding: $padding-x-md 0;
+            textarea {
+                resize: none;
+                width: 100%;
+            }
+            button {
+                @extend %button-md;
+                @extend %submit-button;
             }
         }
     }

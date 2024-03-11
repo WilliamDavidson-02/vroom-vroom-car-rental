@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer("rating");
             $table->string("description");
+            $table->foreignId("booking_id")->constrained("bookings")->cascadeOnDelete();
             $table->foreignId("car_id")->constrained("cars")->cascadeOnDelete();
             $table->foreignId("user_id")->constrained("users")->cascadeOnDelete();
         });

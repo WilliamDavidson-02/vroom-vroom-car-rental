@@ -11,14 +11,19 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillabel = [
+    protected $fillable = [
         "rating",
         "description",
         "user_id",
         "car_id",
+        "booking_id"
     ];
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
+    }
+    public function booking(): BelongsTo
+    {
+        return $this->belongsTo(Booking::class);
     }
 }

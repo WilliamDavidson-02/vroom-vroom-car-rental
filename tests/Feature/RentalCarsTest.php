@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RentalCarsTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
     use RefreshDatabase;
 
     private $BASE_URI = "/rentalCars";
@@ -23,7 +20,6 @@ class RentalCarsTest extends TestCase
 
     public function test_car_rentals_loads(): void
     {
-        // Create a logged in user
         $user = User::factory()->create();
 
         Auth::login($user);
@@ -36,7 +32,6 @@ class RentalCarsTest extends TestCase
 
     public function test_specific_car_rental_loads(): void
     {
-        // Create a logged in user
         $user = User::factory()->create();
         Auth::login($user);
 
@@ -47,4 +42,6 @@ class RentalCarsTest extends TestCase
         $res->assertStatus(200);
         $res->assertSeeText("Reviews");
     }
+
+    //TODO: Write a test to see selected rentalCars when submitting the form on that page
 }
