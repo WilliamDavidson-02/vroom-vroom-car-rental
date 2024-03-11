@@ -67,9 +67,7 @@ use App\Models\User;
                             <a href="/rentalCars/{{ $car->id }}">
                     @endif
                     <div class="car-card">
-
                         <div class="car-image">
-                            {{-- $car->image --}}
                             @if ($car->image == null)
                                 <img src="images/cars/default_car.svg" alt="">
                             @else
@@ -95,17 +93,13 @@ use App\Models\User;
                                             @else
                                                 Manual
                                             @endif
-
                                         </div>
                                         <div class="small-info seats"><img src="/images/person.svg"
                                                 alt="">{{ $car->seat_count }}
                                         </div>
                                         <div class="small-info door"><img src="/images/door.svg"
                                                 alt="">{{ $car->door_count }}</div>
-                                        <div class="small-info hp"><img src="/images/hp.svg"
-                                                alt="">{{ $car->hp }}
-                                            hp
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
