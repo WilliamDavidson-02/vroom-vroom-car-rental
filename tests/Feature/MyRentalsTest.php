@@ -114,11 +114,13 @@ class MyRentalsTest extends TestCase
         $car = Car::factory()->create();
 
         // Update car brand
+
         $car->brand = "Audi";
 
         $res = $this->patch($this->BASE_URI . "/" . $car->id . "/update", $car->toArray());
 
-        $this->assertDatabaseHas("cars", ["brand" => $car->brand]);
+        $this->assertDatabaseHas("cars", ["brand" => "Audi"]);
+
         $res->assertStatus(302);
     }
 }
