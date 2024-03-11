@@ -20,13 +20,9 @@
                     <span>{{ $car->brand . ' ' . $car->model }}</span> on
                     <span>{{ $booking->start_date }}</span> until <span>{{ $booking->end_date }}</span>!
                 </div>
-                {{-- {{TODO: add route to the Mybookings page once its been completed}} --}}
-                <div class="check">Remember to check your <a href="#">bookings </a> regulary!</div>
+                <div class="check">Remember to check your <a href="{{ route('myBookings') }}">bookings </a> regulary!</div>
                 <div class="enjoy"><span>Enjoy your Vroom!</span></div>
             </div>
         </div>
-
-
-
     </main>
 @endsection
