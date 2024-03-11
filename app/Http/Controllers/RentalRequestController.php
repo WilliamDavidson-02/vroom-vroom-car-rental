@@ -32,4 +32,23 @@ class RentalRequestController extends Controller
 
         return view("rentalRequest", compact("booking", "car", "renter"));
     }
+
+    public function choice(Request $req, Booking $booking)
+    {
+        $user = User::find(Auth::id());
+
+        // Check if the user is the owner
+        if ($user->id !== $booking->owner_id) return back();
+
+        // Update accepted
+        if ($req->choice === "accept") {
+            $booking->accepted = 1;
+        } else if ($req->choice === "decline") {
+            $booking->accepted = 0;
+        }
+
+        $booking->save();
+
+        return back();
+    }
 }
