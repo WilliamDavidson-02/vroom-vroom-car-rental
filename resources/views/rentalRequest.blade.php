@@ -64,10 +64,10 @@
         </div>
         @if ($booking->accepted === null)
             <div class="actions-container">
-                <a class="accept" href="">
+                <a class="accept" href="{{route("request.choice", ["booking" => $booking->id, "choice" => "accept"])}}">
                     <i class="fa-solid fa-check"></i>
                 </a>
-                <a class="decline" href="">
+                <a class="decline" href="{{route("request.choice", ["booking" => $booking->id, "choice" => "decline"])}}">
                     <i class="fa-solid fa-x"></i>
                 </a>
             </div>

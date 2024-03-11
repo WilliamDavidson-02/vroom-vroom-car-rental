@@ -58,5 +58,6 @@ Route::group(['prefix' => 'dashboard', "middleware" => "auth"], function () {
 
     Route::get("/requests", [AllRentalRequestsController::class, "index"])->name("requests");
     Route::get("/requests/{booking}", [RentalRequestController::class, "index"])->name("request");
+    Route::get("/requests/{booking}/choice", [RentalRequestController::class, "choice"])->name("request.choice");
     Route::get("/myBookings", [myBookingsController::class, "index"])->middleware("auth")->name("myBookings");
 });
