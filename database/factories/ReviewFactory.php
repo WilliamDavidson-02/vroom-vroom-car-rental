@@ -26,6 +26,7 @@ class ReviewFactory extends Factory
             "description" => $review["description"],
             "user_id" => $booking->renter_id,
             "car_id" => $booking->car_id,
+            "booking_id" => $booking->id,
         ];
     }
 }

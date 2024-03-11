@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RentalCarsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\myBookingsController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,6 +47,7 @@ Route::get("/rentalCars/{car}", [RentalCarsController::class, "aCar"]);
 
 
 Route::post('/createBooking', [BookingController::class, 'createBooking'])->middleware('auth');
+Route::post('/createReview', [ReviewController::class, 'createReview'])->middleware("auth");
 
 Route::group(['prefix' => 'dashboard', "middleware" => "auth"], function () {
     Route::get("/my-rentals", [DashboardRentalsController::class, 'myRentals'])->name('myRentals');
