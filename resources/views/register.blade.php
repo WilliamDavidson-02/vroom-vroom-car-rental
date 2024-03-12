@@ -2,6 +2,10 @@
 
 @section('title', '- Login')
 
+@section("menu")
+    @include("components.navigation")
+@endsection
+
 @section('content')
     <main class="auth-form">
         <form method="post" action="/register" enctype="multipart/form-data">
