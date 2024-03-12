@@ -23,7 +23,10 @@
     margin: 0 auto;
     max-width: 1440px;
     width: 100%;
-
+    flex-direction: column;
+    h1 {
+        color: $dark-blue;
+    }
     form {
         max-width: 500px;
         width: 100%;
@@ -1417,4 +1420,3 @@ nav {
         }
     }
 }
-
