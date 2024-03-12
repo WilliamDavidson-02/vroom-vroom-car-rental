@@ -27,7 +27,7 @@ class CarFactory extends Factory
         return [
             "brand" => $vehicle["brand"],
             "model" => $vehicle["model"],
-            "type" => str_replace(' ', '_', $this->faker->vehicleType),
+            "type" => fake()->randomElement($options->types),
             "door_count" => $this->faker->vehicleDoorCount,
             "seat_count" => $this->faker->vehicleSeatCount,
             "gear_box" => $this->faker->vehicleGearBoxType === "automatic",
