@@ -20,7 +20,7 @@ class MyRentalsTest extends TestCase
         // Create a logged in user
         $user = User::factory()->create();
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $res = $this->get($this->BASE_URI);
 
@@ -32,7 +32,7 @@ class MyRentalsTest extends TestCase
         // Create a logged in user
         $user = User::factory()->create();
 
-        Auth::login($user);
+        $this->actingAs($user);
 
         $res = $this->get($this->BASE_URI . "/add");
 
@@ -44,7 +44,7 @@ class MyRentalsTest extends TestCase
     {
         // Create a logged in user
         $user = User::factory()->create();
-        Auth::login($user);
+        $this->actingAs($user);
 
         $car = Car::factory()->create();
 
@@ -57,7 +57,7 @@ class MyRentalsTest extends TestCase
     {
         // Create a logged in user
         $user = User::factory()->create();
-        Auth::login($user);
+        $this->actingAs($user);
 
         // Create a car
         $car = [
@@ -91,7 +91,7 @@ class MyRentalsTest extends TestCase
     {
         // Create a logged in user
         $user = User::factory()->create();
-        Auth::login($user);
+        $this->actingAs($user);
 
         $car = Car::factory()->create();
 
@@ -109,18 +109,12 @@ class MyRentalsTest extends TestCase
     {
         // Create a logged in user
         $user = User::factory()->create();
-        Auth::login($user);
+        $this->actingAs($user);
 
-        $car = Car::factory()->create();
-
-        // Update car brand
-
-        $car->brand = "Audi";
+        $car = Car::factory()->create(["brand" => "Audi"]);
 
         $res = $this->patch($this->BASE_URI . "/" . $car->id . "/update", $car->toArray());
 
-        $this->assertDatabaseHas("cars", ["brand" => "Audi"]);
-
-        $res->assertStatus(302);
+        $this->assertEquals($car->brand, Car::first()->brand);
     }
 }

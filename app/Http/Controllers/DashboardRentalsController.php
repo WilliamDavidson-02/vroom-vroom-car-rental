@@ -127,7 +127,7 @@ class DashboardRentalsController extends Controller
             "type" => ["required", "string", "in:$types"],
             "gear_box" => ["required", Rule::in(['1', '0', true, false])],
             "drive" => ["required", "string", "in:$drives"],
-            "door_count" => ["required", "numeric", "between:2, 5"],
+            "door_count" => ["required", "numeric", "between:1, 6"],
             "seat_count" => ["required", "numeric", "between:1, 100"],
             "year" => ["required", "numeric", "between:1886," . date("Y")],
             "hp" => ["required", "numeric", "between:1,9999"],
@@ -173,6 +173,7 @@ class DashboardRentalsController extends Controller
 
     public function updateRental(Request $req, Car $car)
     {
+
         $user = User::find(Auth::id());
 
         // Redirect back if user does not owne the car
@@ -195,7 +196,7 @@ class DashboardRentalsController extends Controller
             "type" => ["required", "string", "in:$types"],
             "gear_box" => ["required", Rule::in(['1', '0', true, false])],
             "drive" => ["required", "string", "in:$drives"],
-            "door_count" => ["required", "numeric", "between:2, 5"],
+            "door_count" => ["required", "numeric", "between:1, 6"],
             "seat_count" => ["required", "numeric", "between:1, 100"],
             "year" => ["required", "numeric", "between:1886," . date("Y")],
             "hp" => ["required", "numeric", "between:1,9999"],
